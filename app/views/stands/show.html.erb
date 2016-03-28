@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Brand:</strong>
+  <%= @stand.brand %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @stand.name %>
+</p>
+
+<p>
+  <strong>Qty:</strong>
+  <%= @stand.qty %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @stand.price %>
+</p>
+
+<%= link_to 'Edit', edit_stand_path(@stand) %> |
+<%= link_to 'Back', stands_path %>

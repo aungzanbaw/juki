@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Brand:</strong>
+  <%= @table.brand %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @table.name %>
+</p>
+
+<p>
+  <strong>Width:</strong>
+  <%= @table.width %>
+</p>
+
+<p>
+  <strong>Height:</strong>
+  <%= @table.height %>
+</p>
+
+<p>
+  <strong>Qty:</strong>
+  <%= @table.qty %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @table.price %>
+</p>
+
+<%= link_to 'Edit', edit_table_path(@table) %> |
+<%= link_to 'Back', tables_path %>

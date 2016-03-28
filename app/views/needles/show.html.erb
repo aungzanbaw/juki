@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Model:</strong>
+  <%= @needle.model %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @needle.category %>
+</p>
+
+<p>
+  <strong>Size:</strong>
+  <%= @needle.size %>
+</p>
+
+<p>
+  <strong>Machine:</strong>
+  <%= @needle.machine %>
+</p>
+
+<p>
+  <strong>Stock:</strong>
+  <%= @needle.stock %>
+</p>
+
+<p>
+  <strong>Qty:</strong>
+  <%= @needle.qty %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @needle.price %>
+</p>
+
+<%= link_to 'Edit', edit_needle_path(@needle) %> |
+<%= link_to 'Back', needles_path %>

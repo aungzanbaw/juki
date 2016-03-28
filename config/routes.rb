@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  devise_for :staffs
+  resources :parts
+  resources :needles
+  resources :currencies
+  resources :machines
+  resources :stands
+  resources :tables
+  resources :motors
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
