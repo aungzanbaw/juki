@@ -13,5 +13,18 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require dataTables/jquery.dataTables
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function() {
+	$('.datatabled').DataTable();		
+	$(document).on('page:load',function() {
+		$('.datatabled').DataTable();		
+	});
+});
+
+$(document).on('ready page:load',function () {
+	$('.datatabled').DataTable();			
+})

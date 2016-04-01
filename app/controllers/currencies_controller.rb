@@ -4,7 +4,7 @@ class CurrenciesController < ApplicationController
   # GET /currencies
   # GET /currencies.json
   def index
-    @currencies = Currency.all
+    @currencies = Currency.order(created_at: :desc)
   end
 
   # GET /currencies/1
@@ -28,7 +28,7 @@ class CurrenciesController < ApplicationController
 
     respond_to do |format|
       if @currency.save
-        format.html { redirect_to @currency, notice: 'Currency was successfully created.' }
+        format.html { redirect_to currencies_path, notice: 'Currency was successfully created.' }
         format.json { render :show, status: :created, location: @currency }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class CurrenciesController < ApplicationController
   def update
     respond_to do |format|
       if @currency.update(currency_params)
-        format.html { redirect_to @currency, notice: 'Currency was successfully updated.' }
+        format.html { redirect_to currencies_path, notice: 'Currency was successfully updated.' }
         format.json { render :show, status: :ok, location: @currency }
       else
         format.html { render :edit }

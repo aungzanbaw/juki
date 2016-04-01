@@ -11,6 +11,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 gem 'devise' 
+gem 'jquery-datatables-rails'
+
 #gem 'searchkick' searching
 #gem "cocoon" nested
 
@@ -36,4 +38,5 @@ end
 group :production do
 	gem 'mysql2'
 	gem 'rails_12factor'
+  #gem "capistrano"
 end

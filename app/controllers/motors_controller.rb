@@ -25,10 +25,10 @@ class MotorsController < ApplicationController
   # POST /motors.json
   def create
     @motor = Motor.new(motor_params)
-
+    @motor.qty = 0
     respond_to do |format|
       if @motor.save
-        format.html { redirect_to @motor, notice: 'Motor was successfully created.' }
+        format.html { redirect_to motors_path, notice: 'Motor was successfully created.' }
         format.json { render :show, status: :created, location: @motor }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class MotorsController < ApplicationController
   def update
     respond_to do |format|
       if @motor.update(motor_params)
-        format.html { redirect_to @motor, notice: 'Motor was successfully updated.' }
+        format.html { redirect_to motors_path, notice: 'Motor was successfully updated.' }
         format.json { render :show, status: :ok, location: @motor }
       else
         format.html { render :edit }

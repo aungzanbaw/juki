@@ -1,36 +1,41 @@
-<p id="notice"><%= notice %></p>
+<% unless notice.nil? || notice.empty? %>
+  <div class="alert alert-success alert-dismissible fade in" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">×</span>
+    </button>
+        <p id="notice"><%= notice %></p>   
+  </div>
+<% end %>
 
 <h1>Listing Machines</h1>
 
-<table>
+<table class="datatabled table table-bordered table-hover table-condensed">
   <thead>
     <tr>
       <th>Model</th>
       <th>Series</th>
-      <th>Namemm</th>
-      <th>Nameeng</th>
+      <th>Myanmar</th>
+      <th>English</th>
       <th>Description</th>
       <th>Company</th>
-      <th>Stock</th>
-      <th>Qty</th>
-      <th colspan="3"></th>
+      <th>Minimum Stock</th>
+      <th>Quantity</th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @machines.each do |machine| %>
       <tr>
-        <td><%= machine.model %></td>
+        <td><p><%= link_to machine.model, edit_machine_path(machine) %></p></td>
         <td><%= machine.series %></td>
         <td><%= machine.namemm %></td>
         <td><%= machine.nameeng %></td>
-        <td><%= machine.description %></td>
+        <td><%= truncate(machine.description) %></td>
         <td><%= machine.company %></td>
         <td><%= machine.stock %></td>
         <td><%= machine.qty %></td>
-        <td><%= link_to 'Show', machine %></td>
-        <td><%= link_to 'Edit', edit_machine_path(machine) %></td>
-        <td><%= link_to 'Destroy', machine, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', machine, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -38,4 +43,4 @@
 
 <br>
 
-<%= link_to 'New Machine', new_machine_path %>
+<%= link_to 'New Machine', new_machine_path, class: 'btn btn-primary' %>

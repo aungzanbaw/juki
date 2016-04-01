@@ -1,49 +1,39 @@
 <%= form_for(@machine) do |f| %>
+  
   <% if @machine.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@machine.errors.count, "error") %> prohibited this machine from being saved:</h2>
-
-      <ul>
-      <% @machine.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+    <%= render "layouts/show_form_error_msg", locals: {objects: @machine} %> 
   <% end %>
 
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :model %><br>
-    <%= f.text_field :model %>
+    <%= f.text_field :model, class: "form-control", required: 'required' %>
   </div>
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :series %><br>
-    <%= f.text_field :series %>
+    <%= f.text_field :series, class: "form-control", required: 'required' %>
   </div>
-  <div class="field">
-    <%= f.label :namemm %><br>
-    <%= f.text_field :namemm %>
+  <div class="field form-group">
+    <%= f.label :namemm, "Name in Myanmar" %><br>
+    <%= f.text_field :namemm, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :nameeng %><br>
-    <%= f.text_field :nameeng %>
+  <div class="field form-group">
+    <%= f.label :nameeng, "Name in English" %><br>
+    <%= f.text_field :nameeng, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :description %><br>
-    <%= f.text_area :description %>
+    <%= f.text_area :description, class: "form-control", size: '0x5' %>
   </div>
-  <div class="field">
-    <%= f.label :company %><br>
-    <%= f.text_field :company %>
+  <div class="field form-group">
+    <%= f.label :company, "Manufacture Company" %><br>
+    <%= f.text_field :company, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :stock %><br>
-    <%= f.number_field :stock %>
-  </div>
-  <div class="field">
-    <%= f.label :qty %><br>
-    <%= f.number_field :qty %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="field form-group">
+    <%= f.label :stock, "Minimum stock level" %><br>
+    <%= f.number_field :stock, class: "form-control", required: 'required', min: 1 %>
+  </div> 
+  <br>
+  <div class="actions form-group">  
+    <%= f.button :submit => "",class: "btn btn-primary" %> <%= link_to 'Back', machines_path %>
   </div>
 <% end %>

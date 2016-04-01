@@ -1,33 +1,23 @@
 <%= form_for(@stand) do |f| %>
+  
   <% if @stand.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@stand.errors.count, "error") %> prohibited this stand from being saved:</h2>
-
-      <ul>
-      <% @stand.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
+    <%= render "layouts/show_form_error_msg", locals: {objects: @stand} %> 
+  <% end %> 
+  
+  <div class="field form-group">
     <%= f.label :brand %><br>
-    <%= f.text_field :brand %>
+    <%= f.text_field :brand, class: "form-control", required: 'required' %>
   </div>
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :qty %><br>
-    <%= f.number_field :qty %>
-  </div>
-  <div class="field">
+    <%= f.text_field :name, class: "form-control" %>
+  </div> 
+  <div class="field form-group">
     <%= f.label :price %><br>
-    <%= f.number_field :price %>
+    <%= f.number_field :price, class: "form-control", required: 'required', min: 1  %>
   </div>
+  <br>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.button :submit => "",class: "btn btn-primary" %> <%= link_to 'Back', stands_path %>
   </div>
 <% end %>

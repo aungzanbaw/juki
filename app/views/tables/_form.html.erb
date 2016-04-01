@@ -1,41 +1,31 @@
 <%= form_for(@table) do |f| %>
-  <% if @table.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@table.errors.count, "error") %> prohibited this table from being saved:</h2>
 
-      <ul>
-      <% @table.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+  <% if @table.errors.any? %>
+    <%= render "layouts/show_form_error_msg", locals: {objects: @table} %> 
   <% end %>
 
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :brand %><br>
-    <%= f.text_field :brand %>
+    <%= f.text_field :brand, class: "form-control", required: 'required' %>
   </div>
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :width %><br>
-    <%= f.number_field :width %>
+    <%= f.number_field :width, class: "form-control", required: 'required', min: 1 %>
   </div>
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :height %><br>
-    <%= f.number_field :height %>
+    <%= f.number_field :height, class: "form-control", required: 'required', min: 1 %>
   </div>
-  <div class="field">
-    <%= f.label :qty %><br>
-    <%= f.number_field :qty %>
-  </div>
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :price %><br>
-    <%= f.number_field :price %>
+    <%= f.number_field :price, class: "form-control", required: 'required', min: 1 %>
   </div>
+  <br>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.button :submit => "",class: "btn btn-primary" %> <%= link_to 'Back', tables_path %>
   </div>
 <% end %>

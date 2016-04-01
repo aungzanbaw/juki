@@ -25,10 +25,11 @@ class MachinesController < ApplicationController
   # POST /machines.json
   def create
     @machine = Machine.new(machine_params)
-
+    # qantity is only modify through purchase order
+    @machine.qty = 0
     respond_to do |format|
       if @machine.save
-        format.html { redirect_to @machine, notice: 'Machine was successfully created.' }
+        format.html { redirect_to machines_path , notice: 'Machine was successfully created.' }
         format.json { render :show, status: :created, location: @machine }
       else
         format.html { render :new }
@@ -39,10 +40,10 @@ class MachinesController < ApplicationController
 
   # PATCH/PUT /machines/1
   # PATCH/PUT /machines/1.json
-  def update
+  def update    
     respond_to do |format|
       if @machine.update(machine_params)
-        format.html { redirect_to @machine, notice: 'Machine was successfully updated.' }
+        format.html { redirect_to machines_path, notice: 'Machine was successfully updated.' }
         format.json { render :show, status: :ok, location: @machine }
       else
         format.html { render :edit }

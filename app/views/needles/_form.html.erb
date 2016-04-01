@@ -1,45 +1,36 @@
-<%= form_for(@needle) do |f| %>
-  <% if @needle.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@needle.errors.count, "error") %> prohibited this needle from being saved:</h2>
+<%= form_for(@needle) do |f| %>  
 
-      <ul>
-      <% @needle.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+  <% if @needle.errors.any? %>
+    <%= render "layouts/show_form_error_msg", locals: {objects: @needle} %> 
   <% end %>
 
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :model %><br>
-    <%= f.text_field :model %>
+    <%= f.text_field :model, class: "form-control", required: 'required' %>
   </div>
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :category %><br>
-    <%= f.text_field :category %>
+    <%= f.text_field(:category, class: "form-control", required: 'required') %>
+    <p class="help-block">Woven only(R), Woven and Knit(RG), Knit(FG), Knit only(FFG)</p>
   </div>
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :size %><br>
-    <%= f.text_field :size %>
+    <%= f.text_field :size, class: "form-control", required: 'required' %>
   </div>
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :machine_id %><br>
-    <%= f.text_field :machine_id %>
+    <%= f.text_field :machine_id, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :stock %><br>
-    <%= f.number_field :stock %>
+  <div class="field form-group">
+    <%= f.label :stock, "Minimum stock level" %><br>
+    <%= f.number_field :stock, class: "form-control", required: 'required', min: 1 %>
   </div>
-  <div class="field">
-    <%= f.label :qty %><br>
-    <%= f.number_field :qty %>
-  </div>
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :price %><br>
-    <%= f.number_field :price %>
+    <%= f.number_field :price, class: "form-control", required: 'required', min: 1 %>
   </div>
+  <br>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.button :submit => "",class: "btn btn-primary" %> <%= link_to 'Back', needles_path %>
   </div>
 <% end %>

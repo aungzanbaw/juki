@@ -25,10 +25,10 @@ class StandsController < ApplicationController
   # POST /stands.json
   def create
     @stand = Stand.new(stand_params)
-
+    @stand.qty = 0
     respond_to do |format|
       if @stand.save
-        format.html { redirect_to @stand, notice: 'Stand was successfully created.' }
+        format.html { redirect_to stands_path, notice: 'Stand was successfully created.' }
         format.json { render :show, status: :created, location: @stand }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class StandsController < ApplicationController
   def update
     respond_to do |format|
       if @stand.update(stand_params)
-        format.html { redirect_to @stand, notice: 'Stand was successfully updated.' }
+        format.html { redirect_to stands_path, notice: 'Stand was successfully updated.' }
         format.json { render :show, status: :ok, location: @stand }
       else
         format.html { render :edit }

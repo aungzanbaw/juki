@@ -1,25 +1,19 @@
 <%= form_for(@currency) do |f| %>
+  
   <% if @currency.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@currency.errors.count, "error") %> prohibited this currency from being saved:</h2>
-
-      <ul>
-      <% @currency.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+    <%= render "layouts/show_form_error_msg", locals: {objects: @currency} %> 
   <% end %>
 
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :burma %><br>
-    <%= f.number_field :burma %>
+    <%= f.number_field :burma, class: "form-control", required: 'required', min: 1 %>
   </div>
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :us %><br>
-    <%= f.number_field :us %>
+    <%= f.number_field :us, class: "form-control", required: 'required', min: 1 %>
   </div>
+  <br>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.button :submit => "",class: "btn btn-primary" %> <%= link_to 'Back', currencies_path %>
   </div>
 <% end %>

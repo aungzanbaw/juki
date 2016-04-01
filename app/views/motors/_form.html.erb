@@ -1,37 +1,27 @@
 <%= form_for(@motor) do |f| %>
+  
   <% if @motor.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@motor.errors.count, "error") %> prohibited this motor from being saved:</h2>
-
-      <ul>
-      <% @motor.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+    <%= render "layouts/show_form_error_msg", locals: {objects: @motor} %> 
   <% end %>
 
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :brand %><br>
-    <%= f.text_field :brand %>
+    <%= f.text_field :brand, class: "form-control", required: 'required' %>
   </div>
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: "form-control"  %>
   </div>
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :watt %><br>
-    <%= f.number_field :watt %>
-  </div>
-  <div class="field">
-    <%= f.label :qty %><br>
-    <%= f.number_field :qty %>
-  </div>
-  <div class="field">
+    <%= f.number_field :watt, class: "form-control", required: 'required', min: 1 %>
+  </div> 
+  <div class="field form-group">
     <%= f.label :price %><br>
-    <%= f.number_field :price %>
+    <%= f.number_field :price, class: "form-control", required: 'required', min: 1 %>
   </div>
+  <br>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.button :submit => "",class: "btn btn-primary" %> <%= link_to 'Back', motors_path %>
   </div>
 <% end %>

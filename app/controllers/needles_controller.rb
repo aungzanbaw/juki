@@ -25,13 +25,13 @@ class NeedlesController < ApplicationController
   # POST /needles.json
   def create
     @needle = Needle.new(needle_params)
-
+    @needle.qty = 0
     respond_to do |format|
       if @needle.save
-        format.html { redirect_to @needle, notice: 'Needle was successfully created.' }
+        format.html { redirect_to needles_path, notice: 'Needle was successfully created.' }
         format.json { render :show, status: :created, location: @needle }
       else
-        format.html { render :new }
+        format.html { render :new, locals: {objects: params[:category]} }
         format.json { render json: @needle.errors, status: :unprocessable_entity }
       end
     end
@@ -42,7 +42,7 @@ class NeedlesController < ApplicationController
   def update
     respond_to do |format|
       if @needle.update(needle_params)
-        format.html { redirect_to @needle, notice: 'Needle was successfully updated.' }
+        format.html { redirect_to needles_path, notice: 'Needle was successfully updated.' }
         format.json { render :show, status: :ok, location: @needle }
       else
         format.html { render :edit }
