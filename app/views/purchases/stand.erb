@@ -1,0 +1,34 @@
+<% unless notice.nil? || notice.empty? %>
+  <div class="alert alert-success alert-dismissible fade in" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">×</span>
+    </button>
+        <p id="notice"><%= notice %></p>   
+  </div>
+<% end %>
+
+<h1>Stands Purchase Order</h1>
+
+<table class="datatabled table table-bordered table-hover table-condensed">
+  <thead>
+    <tr>
+      <th>Brand</th>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Cart</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @stands.each do |stand| %>
+      <tr>
+        <td><%= stand.brand %></td>
+        <td><%= stand.name %></td>
+        <td><%= stand.qty %></td>
+        <td><%= stand.price %></td>  
+        <td><%= link_to 'Purchase', '#' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table> 

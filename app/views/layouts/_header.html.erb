@@ -17,13 +17,15 @@
             Purchase orders <span class="caret"></span>
           </a> 
             <ul class="dropdown-menu"> 
-              <li><%= link_to "Machines", machines_path %></li> 
-              <li><%= link_to "Parts", parts_path %></li> 
-              <li><%= link_to "Needles", needles_path %></li> 
+              <li><%= link_to "Machines", machines_purchase_path %></li> 
+              <li><%= link_to "Parts", parts_purchase_path %></li> 
+              <li><%= link_to "Needles", needles_purchase_path %></li> 
               <li role="separator" class="divider"></li> 
-              <li><%= link_to "Mortors", motors_path %></li>  
-              <li><%= link_to "Tables", tables_path %></li>  
-              <li><%= link_to "Stands", stands_path %></li>  
+              <li><%= link_to "Motors", motors_purchase_path %></li>  
+              <li><%= link_to "Tables", tables_purchase_path %></li>  
+              <li><%= link_to "Stands", stands_purchase_path %></li> 
+              <li role="separator" class="divider"></li> 
+              <li><%= link_to "Purchase Invoices", purchases_path %></li> 
             </ul>
         </li>
         
@@ -42,14 +44,14 @@
 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-            Warehose <span class="caret"></span>
+            Warehouse <span class="caret"></span>
           </a> 
             <ul class="dropdown-menu"> 
               <li><%= link_to "Machines", machines_path %></li> 
               <li><%= link_to "Parts", parts_path %></li> 
               <li><%= link_to "Needles", needles_path %></li> 
               <li role="separator" class="divider"></li> 
-              <li><%= link_to "Mortors", motors_path %></li>  
+              <li><%= link_to "Motors", motors_path %></li>  
               <li><%= link_to "Tables", tables_path %></li>  
               <li><%= link_to "Stands", stands_path %></li> 
               <li role="separator" class="divider"></li> 

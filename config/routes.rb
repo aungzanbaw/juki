@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  resources :purchases
+  get 'machines_purchase', to: 'purchases#machine'
+  get 'parts_purchase', to: 'purchases#part'
+  get 'needles_purchase', to: 'purchases#needle'
+  get 'motors_purchase', to: 'purchases#motor'
+  get 'tables_purchase', to: 'purchases#table'
+  get 'stands_purchase', to: 'purchases#stand'
+  get 'purchase_cart', to: 'purchases#cart'
+  
+  get 'add_to_cart/:id/:category', to: 'purchases#add_to_cart'
+
+
   devise_for :staffs
   resources :parts
   resources :needles
