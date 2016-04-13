@@ -2,18 +2,16 @@
   <ul class="nav bs-docs-sidenav">
     <li class="<%= 'active' if params[:controller] == 'purchases' %>">
     	<a href="<%= purchase_cart_path unless session[:purchase_cart].nil? || session[:purchase_cart].empty? %>">
-    		<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> 
-                Purchase Cart 
-            <span class="badge"><%= session[:purchase_cart].count unless session[:purchase_cart].nil? || session[:purchase_cart].empty? %></span>
+    		<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Purchase Cart <span class="badge"><%= session[:purchase_cart].count unless session[:purchase_cart].nil? || session[:purchase_cart].empty? %></span>
     	</a>
     </li>
     <li class="<%= 'active' if params[:controller] == 'sales' %>">
         <a href="#">
-            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Sale Cart <span class="badge">42</span>
+            <span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Sale Cart <span class="badge">42</span>
         </a>
     </li>
     <li>
-    	<a href="#"><span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Debts <span class="badge">12</span></a>
+    	<a href="#"><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> Debts <span class="badge">12</span></a>
     </li>
     <li>
     	<a href="#"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Postpone sales <span class="badge">30</span></a>

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'stands_purchase', to: 'purchases#stand'
   get 'purchase_cart', to: 'purchases#cart'
   
-  get 'add_to_cart/:id/:category', to: 'purchases#add_to_cart'
+  get 'add_to_cart', to: 'purchases#add_cart' 
 
 
   devise_for :staffs
@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :tables
   resources :motors
   root 'home#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

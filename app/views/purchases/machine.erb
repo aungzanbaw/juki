@@ -20,7 +20,7 @@
       <th>Company</th>
       <th>Minimum Stock</th>
       <th>Quantity</th> 
-      <th>Cart</th>
+      <th>Add to</th>
     </tr>
   </thead>
 
@@ -35,8 +35,10 @@
         <td><%= machine.company %></td>
         <td><%= machine.stock %></td>
         <td><%= machine.qty %></td>
-        <td><%= link_to 'Purchase', { controller: 'purchases', action: 'add_to_cart'}, id: machine.id, category: machine.class , class: "btn btn-link" %></td>
+        
+        <td><%= link_to 'Add to cart', add_to_cart_path(id: machine.id, category: machine.class), class: "btn btn-link add_to_cart" %></td>
+        
       </tr>
     <% end %>
   </tbody>
-</table>
+</table> 

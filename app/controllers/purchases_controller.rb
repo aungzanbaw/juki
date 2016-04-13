@@ -14,7 +14,7 @@ class PurchasesController < ApplicationController
 
   # GET /purchases/new
   def new
-    @purchase = Purchase.new
+    @purchase = Purchase.new 
   end
 
   # GET /purchases/1/edit
@@ -85,12 +85,20 @@ class PurchasesController < ApplicationController
     @stands = Stand.all
   end
 
-  def add_to_cart
-    
+  def add_cart
+    session[:purchase_cart] ||= []
+    if Purchase.valid_category(params[:category])
+      session[:purchase_cart] = Purchase.add_to_cart(session[:purchase_cart], params[:category], params[:id])
+      redirect_to Purchase.valid_url(params[:category]), notice: "Operation success #{session[:purchase_cart]}"
+    else
+      redirect_to root_path, notice: "Invalid operation perform on Purchase cart."      
+    end
   end
-
+  
   def cart
-    
+    #@session = Purchase.get_items(session[:purchase_cart])
+    #@session = session[:purchase_cart]
+    # get by category then id
   end
 
   private
@@ -103,4 +111,5 @@ class PurchasesController < ApplicationController
     def purchase_params
       params.require(:purchase).permit(:name, :address, :nic, :phone, :total)
     end
+
 end
