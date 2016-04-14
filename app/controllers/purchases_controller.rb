@@ -87,18 +87,47 @@ class PurchasesController < ApplicationController
 
   def add_cart
     session[:purchase_cart] ||= []
-    if Purchase.valid_category(params[:category])
+    if Purchase.valid_get_params(params[:category],params[:id])
       session[:purchase_cart] = Purchase.add_to_cart(session[:purchase_cart], params[:category], params[:id])
-      redirect_to Purchase.valid_url(params[:category]), notice: "Operation success #{session[:purchase_cart]}"
+      redirect_to Purchase.valid_url(params[:category]), notice: "Operation success"
     else
       redirect_to root_path, notice: "Invalid operation perform on Purchase cart."      
     end
   end
   
   def cart
-    #@session = Purchase.get_items(session[:purchase_cart])
+    @datas = Purchase.get_items(session[:purchase_cart])
+    @total = get_total(session[:purchase_cart])
     #@session = session[:purchase_cart]
     # get by category then id
+  end
+
+  def update_cart
+    @cart = Purchase.new(purchase_params)
+
+    respond_to do |format|
+      if @purchase.save
+        format.html { redirect_to @purchase, notice: 'Purchase was successfully created.' }
+        format.json { render :show, status: :created, location: @purchase }
+      else
+        format.html { render :new }
+        format.json { render json: @purchase.errors, status: :unprocessable_entity }
+      end
+    end
+
+  end
+
+  def remove_cart 
+    if Purchase.valid_get_params(params[:category],params[:id])
+      session[:purchase_cart] = Purchase.delete_item(session[:purchase_cart], params[:category], params[:id])
+      unless session[:purchase_cart].nil? || session[:purchase_cart].empty?
+        redirect_to purchase_cart_path, notice: "Operation success" 
+      else
+        redirect_to Purchase.valid_url(params[:category]), notice: "Operation success"
+      end
+    else
+      redirect_to root_path, notice: "Invalid operation perform on Purchase cart."      
+    end
   end
 
   private
@@ -110,6 +139,14 @@ class PurchasesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def purchase_params
       params.require(:purchase).permit(:name, :address, :nic, :phone, :total)
+    end
+
+    def get_total(session)
+      total = 0
+      session.each do |item|
+        total += item["qty"] * item["price"]
+      end
+      total
     end
 
 end

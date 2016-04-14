@@ -1,9 +1,9 @@
 class Purchase < ActiveRecord::Base
 
-	def self.valid_category(category)
-		unless category.nil? || category.empty?
+	def self.valid_get_params(category, id)
+		unless category.nil? || category.empty? || id.nil? || id.empty? 
       %w[Machine Part Needle Motor Table Stand].each do |controller|
-        return true if category == controller        
+        return true if category == controller
       end
     end    
     return false
@@ -11,12 +11,11 @@ class Purchase < ActiveRecord::Base
 
 	def self.add_to_cart(session, category, id)  
 		if session.nil? || session.empty?
-			session << {category: category, id: id, qty: 1, price: 0}
-			return session	
-		else
-			session << {category: category, id: id, qty:1, price: 10}
-			return session.uniq!
+			puts "Nothing"
+			session << {"category" => category, "id" => id, "qty" => 1, "price" => 1}
 		end
+		session << {"category"=> category, "id" => id, "qty" => 1, "price" => 1}	
+		session.uniq
 	end
 
 	def self.valid_url(controller)
@@ -64,5 +63,20 @@ class Purchase < ActiveRecord::Base
 		return all_in_one
 	end # method end
 
+	def self.delete_item(session,category,id)
+		
+		if session.nil? || session.empty?
+			[]
+		end
+
+		session.each_with_index do |item,index|
+			if item["category"] == category && item["id"] == id
+				session.delete_at(index)
+			end
+		end
+		
+		session.uniq
+
+	end
 
 end
