@@ -1,5 +1,38 @@
-<h1>New Purchase</h1>
+<h1>New Purchase Order</h1>
 
-<%= render 'form' %>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+    	<th>#</th>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Quantity</th>
+      <th>Price</th> 
+    </tr>
+  </thead>
 
-<%= link_to 'Back', purchases_path %>
+  <tbody>
+    <% @datas.each do |data| %>
+      <tr>
+        <td><%= data["id"] %></td> 
+        <td><%= data["name"] %></td> 
+        <td><%= data["category"] %></td> 
+        <td><%= data["qty"] %></td> 
+        <td><%= data["price"] %></td> 
+      </tr>
+    <% end %>
+    <tr>
+    	<td colspan="3"></td>
+    	<td>Subtotal</td>
+    	<td><%= number_to_currency(@total) %></td>
+    </tr>
+    <tr>
+    	<td colspan="3"></td>
+    	<td>Tax</td>
+    	<td>0</td>
+    </tr>
+    
+  </tbody>
+</table>
+
+<%= render 'form' %> 

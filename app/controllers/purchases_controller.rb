@@ -15,6 +15,8 @@ class PurchasesController < ApplicationController
   # GET /purchases/new
   def new
     @purchase = Purchase.new 
+    @datas = Purchase.get_items(session[:purchase_cart])
+    @total = get_total(session[:purchase_cart])
   end
 
   # GET /purchases/1/edit
@@ -62,7 +64,7 @@ class PurchasesController < ApplicationController
   end
 
   def machine
-    @machines = Machine.all
+    @machines = filter_in_session(session[:purchase_cart], Machine)
   end
 
   def part
@@ -95,26 +97,20 @@ class PurchasesController < ApplicationController
     end
   end
   
-  def cart
+  def cart 
+    # get the :name for better presentation 
     @datas = Purchase.get_items(session[:purchase_cart])
     @total = get_total(session[:purchase_cart])
-    #@session = session[:purchase_cart]
-    # get by category then id
+    
   end
 
   def update_cart
-    @cart = Purchase.new(purchase_params)
-
-    respond_to do |format|
-      if @purchase.save
-        format.html { redirect_to @purchase, notice: 'Purchase was successfully created.' }
-        format.json { render :show, status: :created, location: @purchase }
-      else
-        format.html { render :new }
-        format.json { render json: @purchase.errors, status: :unprocessable_entity }
-      end
+    session[:purchase_cart].each do |stuff| 
+      stuff["price"] = params["p"+stuff["category"]+stuff["id"]] unless params["p"+stuff["category"]+stuff["id"]] == nil 
+      stuff["qty"] = params["q"+stuff["category"]+stuff["id"]] unless params["p"+stuff["category"]+stuff["id"]] == nil
+      
     end
-
+    redirect_to purchase_cart_url, notice: "Updated - operation success"
   end
 
   def remove_cart 
@@ -141,12 +137,25 @@ class PurchasesController < ApplicationController
       params.require(:purchase).permit(:name, :address, :nic, :phone, :total)
     end
 
+    # give total number for cart, can't save on session
     def get_total(session)
       total = 0
       session.each do |item|
-        total += item["qty"] * item["price"]
+        total += item["qty"].to_i * item["price"].to_i
       end
       total
     end
 
+    # Those item which already in session should not display in purchase order page
+    def filter_in_session(session, model)
+      ids = []
+      unless session.nil? || session.empty? 
+        session.each do |detail|
+          if detail['category'] == model
+            ids << detail["id"]
+          end
+        end #do end
+      end # unless end
+      model.where.not(id: ids)
+    end
 end

@@ -9,6 +9,8 @@
   </div>
 <% end %>
 
+<%= form_tag('update_purchase_cart', method: :post) do  %>
+
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -24,18 +26,24 @@
   <tbody>
     <% @datas.each do |data| %>
       <tr>
-        <td><%= data[:id] %></td> 
-        <td><%= data[:name] %></td> 
-        <td><%= data[:category] %></td> 
-        <td><%= data[:qty] %></td> 
-        <td><%= data[:price] %></td> 
-        <td><%= link_to 'Update', remove_from_cart_path(id: data[:id], category: data[:category]), class: "btn btn-link" %> <%= link_to 'Remove', remove_from_cart_path(id: data[:id], category: data[:category]), class: "btn btn-link" %></td>
+        <td><%= data["id"] %></td> 
+        <td><%= data["name"] %></td> 
+        <td><%= data["category"] %></td> 
+        <td> 
+        	<input type="number" min="0" value="<%= data["qty"] %>" class="form-control" id="q<%= data["category"] %><%= data["id"] %>" name="q<%= data["category"] %><%= data["id"] %>" required="required"/>
+        </td> 
+        <td>
+        	<input type="number" min="0" value="<%= data["price"] %>" class="form-control" id="p<%= data["category"] %><%= data["id"] %>" name="p<%= data["category"] %><%= data["id"] %>" required="required"/>
+        </td> 
+        <td> 
+        	<%= link_to 'Remove', remove_from_cart_path(id: data["id"], category: data["category"]), class: "btn btn-link" %>
+        </td>
       </tr>
     <% end %>
     <tr>
     	<td colspan="4"></td>
     	<td>Subtotal</td>
-    	<td><%= @total %></td>
+    	<td><%= number_to_currency(@total) %></td>
     </tr>
     <tr>
     	<td colspan="4"></td>
@@ -43,9 +51,12 @@
     	<td>0</td>
     </tr>
     <tr>
-    	<td colspan="5"></td>
-    	<td><%= link_to 'Checkout', "#", class: "btn btn-default" %></td>
+    	<td colspan="5"></td> 
+    	<td>
+    		<%= submit_tag("Update",class: "btn btn-success") %>
+	    	<%= link_to 'Checkout', new_purchase_path , class: "btn btn-primary" %>
+    	</td>
     </tr>
   </tbody>
 </table>
-
+<% end %>

@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   get 'purchase_cart', to: 'purchases#cart'
   get 'add_to_cart', to: 'purchases#add_cart' 
   get 'remove_from_cart', to: 'purchases#remove_cart' 
-  get 'purchases/update_cart' => 'purchases#update_cart'
+  post 'update_purchase_cart', to: 'purchases#update_cart' 
+  get 'update_purchase_cart', to: 'purchases#update_cart' 
+  
 
   devise_for :staffs
   resources :parts

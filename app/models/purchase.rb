@@ -12,9 +12,9 @@ class Purchase < ActiveRecord::Base
 	def self.add_to_cart(session, category, id)  
 		if session.nil? || session.empty?
 			puts "Nothing"
-			session << {"category" => category, "id" => id, "qty" => 1, "price" => 1}
+			session << {"category" => category, "id" => id}
 		end
-		session << {"category"=> category, "id" => id, "qty" => 1, "price" => 1}	
+		session << {"category"=> category, "id" => id}	
 		session.uniq
 	end
 
@@ -41,22 +41,22 @@ class Purchase < ActiveRecord::Base
 			case session["category"]
 			when "Machine"
 				@machine = Machine.find(session["id"])
-				all_in_one << {name: @machine.model,id: session["id"],category: session["category"],qty: session["qty"], price: session["price"]}
+				all_in_one << {"name" => @machine.model,"id" => session["id"],"category" => session["category"],"qty" => session["qty"], "price" => session["price"]}
 			when "Part"
 				@part = Part.find(session["id"])
-				all_in_one << {name: @part.model, id: session["id"], category: session["category"], qty: session["qty"], price: session["price"]}
+				all_in_one << {"name" => @part.model, "id" => session["id"], "category" => session["category"], "qty" => session["qty"], "price" => session["price"]}
 			when "Needle"
 				@needle = Needle.find(session["id"]) 
-				all_in_one << {name: @needle.model + "-" + @needle.category + "(" + @needle.size  + ")", id: session["id"], category: session["category"], qty: session["qty"], price: session["price"]}
+				all_in_one << {"name" => @needle.model + "-" + @needle.category + "(" + @needle.size  + ")", "id" => session["id"], "category" => session["category"], "qty" => session["qty"], "price" => session["price"]}
 			when "Motor"
 				@motor = Motor.find(session["id"])
-				all_in_one << {name: @motor.name + "-" + @stand.brand + "(" + @motor.watt  + ")" , id: session["id"], category: session["category"], qty: session["qty"], price: session["price"]}
+				all_in_one << {"name" => @motor.name + "-" + @stand.brand + "(" + @motor.watt  + ")" , "id" => session["id"], "category" => session["category"], "qty" => session["qty"], "price" => session["price"]}
 			when "Table"
 				@table = Table.find(session["id"])
-				all_in_one << {name: @table.model + " " + @stand.brand + "(" + @table.width + "x" + @table.height  + ")", id: session["id"], category: session["category"], qty: session["qty"], price: session["price"]}
+				all_in_one << {"name" => @table.model + " " + @stand.brand + "(" + @table.width + "x" + @table.height  + ")", "id" => session["id"], "category" => session["category"], "qty" => session["qty"], "price" => session["price"]}
 			when "Stand"
 				@stand = Stand.find(session["id"])
-				all_in_one << {name: @stand.model + " " + @stand.brand, id: session["id"], category: session["category"], qty: session["qty"], price: session["price"]}
+				all_in_one << {"name" => @stand.model + " " + @stand.brand, "id" => session["id"], "category" => session["category"], "qty" => session["qty"], "price" => session["price"]}
 			end # end of case when
 		end # end of sesssions each loop
 

@@ -1,0 +1,10 @@
+<table class="table">
+<% @temp_session.each do |item|  %>
+<tr>
+	<td><%= item["id"] %></td>
+	<td><%= item["category"] %></td>
+  <td><%= @temp_cart["p"+item["category"]+item["id"]] %> </td>
+  <td><%= @temp_cart["q"+item["category"]+item["id"]] %></td> 
+</tr>
+<% end %>
+</table>
