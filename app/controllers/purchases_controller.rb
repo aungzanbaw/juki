@@ -10,6 +10,7 @@ class PurchasesController < ApplicationController
   # GET /purchases/1
   # GET /purchases/1.json
   def show
+
   end
 
   # GET /purchases/new
@@ -27,11 +28,29 @@ class PurchasesController < ApplicationController
   # POST /purchases.json
   def create
     @purchase = Purchase.new(purchase_params)
+    @purchase.total = get_total(session[:purchase_cart])
 
     respond_to do |format|
       if @purchase.save
-        format.html { redirect_to @purchase, notice: 'Purchase was successfully created.' }
-        format.json { render :show, status: :created, location: @purchase }
+        
+        session[:purchase_cart].each do |item|
+          @purchase_detail = PurchaseDetail.new 
+          @purchase_detail.purchase_id = @purchase.id
+          @purchase_detail.stockable_id = item["id"]
+          @purchase_detail.stockable_type = item["category"]
+          @purchase_detail.qty = item["qty"]
+          @purchase_detail.price = item["price"] 
+          if @purchase_detail.save
+          else
+            format.html { render :new }
+            format.json { render json: @purchase.errors, status: :unprocessable_entity }
+          end
+          format.html { redirect_to @purchase, notice: 'Purchase was successfully created.' }
+          format.json { render :show, status: :created, location: @purchase }
+        end
+
+        
+        
       else
         format.html { render :new }
         format.json { render json: @purchase.errors, status: :unprocessable_entity }

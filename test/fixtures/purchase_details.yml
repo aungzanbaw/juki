@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  purchase_id: 
+  stockable_id: 1
+  stockable_type: MyString
+  qty: 1
+
+two:
+  purchase_id: 
+  stockable_id: 1
+  stockable_type: MyString
+  qty: 1

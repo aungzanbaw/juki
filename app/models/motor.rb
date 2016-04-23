@@ -1,4 +1,5 @@
 class Motor < ActiveRecord::Base
+	has_many :purchse_details, as: :stockable
 	
 	validates :brand, presence: true
 	validates :watt, presence: true
