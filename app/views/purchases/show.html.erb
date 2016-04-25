@@ -1,29 +1,74 @@
-<p id="notice"><%= notice %></p>
+<h1>Purchase Invoice # <%= @purchase.id.to_s + @purchase.created_at.year.to_s + @purchase.created_at.month.to_s + @purchase.created_at.day.to_s%></h1>
 
-<p>
-  <strong>Name:</strong>
-  <%= @purchase.name %>
-</p>
+<table class="table table-border">
+  <tbody>
+    <tr>
+      <td>Name</td>
+      <td><%= @purchase.name %></td>
+    </tr>
 
-<p>
-  <strong>Address:</strong>
-  <%= @purchase.address %>
-</p>
+    <tr>
+      <td>Address</td>
+      <td><%= @purchase.address %></td>
+    </tr>
 
-<p>
-  <strong>Nic:</strong>
-  <%= @purchase.nic %>
-</p>
+    <tr>
+      <td>NIC</td>
+      <td><%= @purchase.nic %></td>
+    </tr>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @purchase.phone %>
-</p>
+    <tr>
+      <td>Phone</td>
+      <td><%= @purchase.phone %></td>
+    </tr>
 
-<p>
-  <strong>Total:</strong>
-  <%= @purchase.total %>
-</p>
+    <tr>
+      <td>Total</td>
+      <td><%= number_to_currency(@purchase.total) %></td>
+    </tr>
 
-<%= link_to 'Edit', edit_purchase_path(@purchase) %> |
-<%= link_to 'Back', purchases_path %>
+    <tr>
+      <td>Date</td>
+      <td><%= @purchase.created_at %></td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Quantity</th>
+      <th>Price</th> 
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @datas.each do |data| %>
+      <tr>
+        <td><%= data["id"] %></td> 
+        <td><%= data["name"] %></td> 
+        <td><%= data["category"] %></td> 
+        <td><%= data["qty"] %></td> 
+        <td><%= data["price"] %></td> 
+      </tr>
+    <% end %>
+    <tr>
+      <td colspan="3"></td>
+      <td>Subtotal</td>
+      <td><%= number_to_currency(@total) %></td>
+    </tr>
+    <tr>
+      <td colspan="3"></td>
+      <td>Tax</td>
+      <td>0</td>
+    </tr> 
+    <tr>
+      <td colspan="3"></td>
+      <td>Total</td>
+      <td><%= number_to_currency(@total) %></td>
+    </tr>
+  </tbody>
+</table>

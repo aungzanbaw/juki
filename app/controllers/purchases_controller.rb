@@ -10,7 +10,8 @@ class PurchasesController < ApplicationController
   # GET /purchases/1
   # GET /purchases/1.json
   def show
-
+    @datas = Purchase.get_items(session[:purchase_cart])
+    @total = get_total(session[:purchase_cart])
   end
 
   # GET /purchases/new
