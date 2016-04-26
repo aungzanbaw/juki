@@ -4,14 +4,13 @@ class PurchasesController < ApplicationController
   # GET /purchases
   # GET /purchases.json
   def index
-    @purchases = Purchase.all
+    @purchases = Purchase.order(created_at: :DESC)
   end
 
   # GET /purchases/1
   # GET /purchases/1.json
-  def show
-    @datas = Purchase.get_items(session[:purchase_cart])
-    @total = get_total(session[:purchase_cart])
+  def show 
+    @purchase_details = PurchaseDetail.where(purchase_id: @purchase.id) 
   end
 
   # GET /purchases/new
@@ -42,10 +41,43 @@ class PurchasesController < ApplicationController
           @purchase_detail.qty = item["qty"]
           @purchase_detail.price = item["price"] 
           if @purchase_detail.save
+            case @purchase_detail.stockable_type
+            when "Machine"
+              @machine = Machine.find(@purchase_detail.stockable_id)
+              qty = @machine.qty
+              qty += @purchase_detail.qty 
+              @machine.update(:qty => qty)
+            when "Part"
+              @part = Part.find(@purchase_detail.stockable_id)
+              qty = @part.qty
+              qty += @purchase_detail.qty 
+              @part.update(:qty => qty)
+            when "Needle"
+              @needle = Needle.find(@purchase_detail.stockable_id)
+              qty = @needle.qty
+              qty += @purchase_detail.qty 
+              @needle.update(:qty => qty)
+            when "Motor"
+              @motor = Motor.find(@purchase_detail.stockable_id)
+              qty = @motor.qty
+              qty += @purchase_detail.qty 
+              @motor.update(:qty => qty)
+            when "Table"
+              @table = Table.find(@purchase_detail.stockable_id)
+              qty = @table.qty
+              qty += @purchase_detail.qty 
+              @table.update(:qty => qty)
+            when "Stand"
+              @stand = Stand.find(@purchase_detail.stockable_id)
+              qty = @stand.qty
+              qty += @purchase_detail.qty 
+              @stand.update(:qty => qty)
+            end
           else
             format.html { render :new }
             format.json { render json: @purchase.errors, status: :unprocessable_entity }
           end
+          session.delete(:purchase_cart)
           format.html { redirect_to @purchase, notice: 'Purchase was successfully created.' }
           format.json { render :show, status: :created, location: @purchase }
         end
@@ -57,7 +89,8 @@ class PurchasesController < ApplicationController
         format.json { render json: @purchase.errors, status: :unprocessable_entity }
       end
     end
-  end
+
+  end #end of create
 
   # PATCH/PUT /purchases/1
   # PATCH/PUT /purchases/1.json

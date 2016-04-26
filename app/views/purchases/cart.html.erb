@@ -19,6 +19,7 @@
       <th>Category</th>
       <th>Quantity</th>
       <th>Price</th>
+      <th>Amount</th>
       <th>Menu</th> 
     </tr>
   </thead>
@@ -34,24 +35,25 @@
         </td> 
         <td>
         	<input type="number" min="0" value="<%= data["price"] %>" class="form-control" id="p<%= data["category"] %><%= data["id"] %>" name="p<%= data["category"] %><%= data["id"] %>" required="required"/>
-        </td> 
+        </td>
+        <td><%= data["qty"].to_i * data["price"].to_i %></td>  
         <td> 
         	<%= link_to 'Remove', remove_from_cart_path(id: data["id"], category: data["category"]), class: "btn btn-link" %>
         </td>
       </tr>
     <% end %>
     <tr>
-    	<td colspan="4"></td>
+    	<td colspan="5"></td>
     	<td>Subtotal</td>
     	<td><%= number_to_currency(@total) %></td>
     </tr>
     <tr>
-    	<td colspan="4"></td>
+    	<td colspan="5"></td>
     	<td>Tax</td>
     	<td>0</td>
     </tr>
     <tr>
-    	<td colspan="5"></td> 
+    	<td colspan="6"></td> 
     	<td>
     		<%= submit_tag("Update",class: "btn btn-success") %>
 	    	<%= link_to 'Checkout', new_purchase_path , class: "btn btn-primary" %>

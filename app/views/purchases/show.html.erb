@@ -1,64 +1,80 @@
-<h1>Purchase Invoice # <%= @purchase.id.to_s + @purchase.created_at.year.to_s + @purchase.created_at.month.to_s + @purchase.created_at.day.to_s%></h1>
-
-<table class="table table-border">
+<table class="table table-bordered">
   <tbody>
     <tr>
-      <td>Name</td>
+      <td><b>Name</b></td>
       <td><%= @purchase.name %></td>
     </tr>
 
     <tr>
-      <td>Address</td>
+      <td><b>Address</b></td>
       <td><%= @purchase.address %></td>
     </tr>
 
     <tr>
-      <td>NIC</td>
+      <td><b>NIC</b></td>
       <td><%= @purchase.nic %></td>
     </tr>
 
     <tr>
-      <td>Phone</td>
+      <td><b>Phone</b></td>
       <td><%= @purchase.phone %></td>
     </tr>
 
     <tr>
-      <td>Total</td>
+      <td><b>Total</b></td>
       <td><%= number_to_currency(@purchase.total) %></td>
     </tr>
 
     <tr>
-      <td>Date</td>
+      <td><b>Date</b></td>
       <td><%= @purchase.created_at %></td>
+    </tr>
+
+    <tr>
+      <td><b>Invoice</b></td>
+      <td>PINV#<%= @purchase.id.to_s + @purchase.created_at.year.to_s + @purchase.created_at.month.to_s + @purchase.created_at.day.to_s%></td>
     </tr>
   </tbody>
 </table>
 
 <table class="table table-bordered">
   <thead>
-    <tr>
-      <th>#</th>
+    <tr> 
       <th>Name</th>
       <th>Category</th>
       <th>Quantity</th>
-      <th>Price</th> 
+      <th>Rate</th> 
+      <th>Amount</th> 
     </tr>
   </thead>
 
   <tbody>
-    <% @datas.each do |data| %>
-      <tr>
-        <td><%= data["id"] %></td> 
-        <td><%= data["name"] %></td> 
-        <td><%= data["category"] %></td> 
-        <td><%= data["qty"] %></td> 
-        <td><%= data["price"] %></td> 
+    <% 
+      @purchase_details.each do |purchase|
+    %>
+      <tr> 
+        <td><% 
+          output = ""
+          unless purchase.stockable["model"].nil? || purchase.stockable["model"].empty?
+            output = purchase.stockable["model"]
+            output += purchase.stockable["category"] if purchase.stockable["category"]
+            output += purchase.stockable["size"] if purchase.stockable["size"]
+          else purchase.stockable["brand"].nil? || purchase.stockable["brand"].empty?
+            output = purchase.stockable["brand"]
+            output += "-"
+            output += purchase.stockable["name"]
+          end
+        %><%= output %></td> 
+        <td><%= purchase["stockable_type"] %></td> 
+        <td><%= purchase["qty"] %></td> 
+        <td><%= purchase["price"] %></td> 
+        <td><%= purchase["qty"].to_i * purchase["price"].to_i %></td> 
       </tr>
     <% end %>
     <tr>
       <td colspan="3"></td>
       <td>Subtotal</td>
-      <td><%= number_to_currency(@total) %></td>
+      <td><%= number_to_currency(@purchase.total) %></td>
     </tr>
     <tr>
       <td colspan="3"></td>
@@ -67,8 +83,8 @@
     </tr> 
     <tr>
       <td colspan="3"></td>
-      <td>Total</td>
-      <td><%= number_to_currency(@total) %></td>
+      <td>Grand Total</td>
+      <td><%= number_to_currency(@purchase.total) %></td>
     </tr>
   </tbody>
 </table>
