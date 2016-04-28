@@ -19,7 +19,7 @@
   </div>
   <div class="field form-group">
     <%= f.label :machine_id %><br>
-    <%= f.text_field :machine_id, class: "form-control" %>
+    <%= f.collection_select :machine_id, Machine.all, :id, :model, {prompt: false}, {:class => "form-control"} %>
   </div>
   <div class="field form-group">
     <%= f.label :stock, "Minimum stock level" %><br>

@@ -117,11 +117,11 @@ class PurchasesController < ApplicationController
   end
 
   def machine
-    @machines = filter_in_session(session[:purchase_cart], Machine)
+    @machines = filter_in_session(session[:purchase_cart], Machine,"Machine")
   end
 
   def part
-    @parts = Part.all
+    @parts = filter_in_session(session[:purchase_cart], Part, "Part")
   end
 
   def needle
@@ -200,11 +200,11 @@ class PurchasesController < ApplicationController
     end
 
     # Those item which already in session should not display in purchase order page
-    def filter_in_session(session, model)
+    def filter_in_session(session, model, model_text)
       ids = []
       unless session.nil? || session.empty? 
         session.each do |detail|
-          if detail['category'] == model
+          if detail['category'] == model_text
             ids << detail["id"]
           end
         end #do end
