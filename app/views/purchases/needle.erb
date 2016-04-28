@@ -33,7 +33,7 @@
         <td><%= needle.stock %></td>
         <td><%= needle.qty %></td>
         <td><%= needle.price %></td>  
-        <td><%= link_to 'Purchase', '#' %></td>
+        <td><%= link_to 'Add to cart', add_to_cart_path(id: needle.id, category: needle.class), class: "btn btn-link add_to_cart" %></td>
       </tr>
     <% end %>
   </tbody>

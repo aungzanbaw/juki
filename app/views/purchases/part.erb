@@ -35,7 +35,7 @@
         <td><%= part.stock %></td>
         <td><%= part.qty %></td>
         <td><%= part.price %></td> 
-        <td><%= link_to 'Purchase', '#' %></td>
+        <td><%= link_to 'Add to cart', add_to_cart_path(id: part.id, category: part.class), class: "btn btn-link add_to_cart" %></td>
       </tr>
     <% end %>
   </tbody>

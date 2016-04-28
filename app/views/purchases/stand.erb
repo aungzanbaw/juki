@@ -27,7 +27,7 @@
         <td><%= stand.name %></td>
         <td><%= stand.qty %></td>
         <td><%= stand.price %></td>  
-        <td><%= link_to 'Purchase', '#' %></td>
+        <td><%= link_to 'Add to cart', add_to_cart_path(id: stand.id, category: stand.class), class: "btn btn-link add_to_cart" %></td>
       </tr>
     <% end %>
   </tbody>

@@ -42,8 +42,8 @@
     <tr> 
       <th>Name</th>
       <th>Category</th>
-      <th>Quantity</th>
       <th>Rate</th> 
+      <th>Quantity</th>
       <th>Amount</th> 
     </tr>
   </thead>
@@ -53,18 +53,23 @@
       @purchase_details.each do |purchase|
     %>
       <tr> 
-        <td><% 
-          output = ""
-          unless purchase.stockable["model"].nil? || purchase.stockable["model"].empty?
-            output = purchase.stockable["model"]
-            output += purchase.stockable["category"] if purchase.stockable["category"]
-            output += purchase.stockable["size"] if purchase.stockable["size"]
-          else purchase.stockable["brand"].nil? || purchase.stockable["brand"].empty?
-            output = purchase.stockable["brand"]
-            output += "-"
-            output += purchase.stockable["name"]
+        <% output = ""
+          case purchase["stockable_type"]
+          when "Machine"
+            output = purchase.stockable["model"] 
+          when "Part"
+            output = purchase.stockable["model"] + " (" + purchase.stockable.machine["model"] + ")"
+          when "Needle"
+            output = purchase.stockable["model"]+ " " + purchase.stockable["category"] + " (" +purchase.stockable["size"].to_s + ")"
+          when "Motor"
+            output = purchase.stockable["brand"] +" "+ purchase.stockable["name"] + " (" + purchase.stockable["watt"].to_s + ")" 
+          when "Table"
+            output = purchase.stockable["brand"] + purchase.stockable["name"] + " (" + purchase.stockable["width"].to_s + "x" + purchase.stockable["height"].to_s + ")"
+          when "Stand"
+            output = purchase.stockable["brand"] + purchase.stockable["name"]
           end
-        %><%= output %></td> 
+        %>
+        <td><%= output %></td> 
         <td><%= purchase["stockable_type"] %></td> 
         <td><%= purchase["qty"] %></td> 
         <td><%= purchase["price"] %></td> 

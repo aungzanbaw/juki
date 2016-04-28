@@ -34,10 +34,8 @@
         <td><%= truncate(machine.description) %></td>
         <td><%= machine.company %></td>
         <td><%= machine.stock %></td>
-        <td><%= machine.qty %></td>
-        
-        <td><%= link_to 'Add to cart', add_to_cart_path(id: machine.id, category: machine.class), class: "btn btn-link add_to_cart" %></td>
-        
+        <td><%= machine.qty %></td> 
+        <td><%= link_to 'Add to cart', add_to_cart_path(id: machine.id, category: machine.class), class: "btn btn-link add_to_cart" %></td>        
       </tr>
     <% end %>
   </tbody>
