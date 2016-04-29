@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :staffs
   resources :purchases
   get 'machines_purchase', to: 'purchases#machine'
   get 'parts_purchase', to: 'purchases#part'
@@ -16,7 +17,6 @@ Rails.application.routes.draw do
   get 'update_purchase_cart', to: 'purchases#update_cart' 
   
 
-  devise_for :staffs
   resources :parts
   resources :needles
   resources :currencies
