@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get 'tables_purchase', to: 'purchases#table'
   get 'stands_purchase', to: 'purchases#stand'
   
+  get 'machines_sale', to: 'sales#machine'
+
   get 'purchase_cart', to: 'purchases#cart'
   get 'add_to_cart', to: 'purchases#add_cart' 
   get 'remove_from_cart', to: 'purchases#remove_cart' 
