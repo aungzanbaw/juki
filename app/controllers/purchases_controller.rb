@@ -161,7 +161,6 @@ class PurchasesController < ApplicationController
     session[:purchase_cart].each do |stuff| 
       stuff["price"] = params["p"+stuff["category"]+stuff["id"]] unless params["p"+stuff["category"]+stuff["id"]] == nil 
       stuff["qty"] = params["q"+stuff["category"]+stuff["id"]] unless params["p"+stuff["category"]+stuff["id"]] == nil
-      
     end
     redirect_to purchase_cart_url, notice: "Updated - operation success"
   end
