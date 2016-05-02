@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160429125221) do
+ActiveRecord::Schema.define(version: 20160501075631) do
 
   create_table "currencies", force: :cascade do |t|
     t.integer  "burma"
@@ -39,6 +39,32 @@ ActiveRecord::Schema.define(version: 20160429125221) do
     t.integer  "watt"
     t.integer  "qty"
     t.integer  "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "msale_details", force: :cascade do |t|
+    t.integer  "msale_id"
+    t.integer  "machine_id"
+    t.integer  "qty"
+    t.integer  "price"
+    t.string   "chassis"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "msale_details", ["machine_id"], name: "index_msale_details_on_machine_id"
+  add_index "msale_details", ["msale_id"], name: "index_msale_details_on_msale_id"
+
+  create_table "msales", force: :cascade do |t|
+    t.boolean  "proforma"
+    t.string   "customer"
+    t.string   "nic"
+    t.string   "address"
+    t.integer  "phone"
+    t.integer  "total"
+    t.boolean  "debt"
+    t.integer  "tax"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

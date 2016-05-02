@@ -6,8 +6,8 @@
     	</a>
     </li>
     <li class="<%= 'active' if params[:controller] == 'sales' %>">
-        <a href="#">
-            <span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Sale Cart <span class="badge">42</span>
+        <a href="<%= msale_cart_path unless session[:msale_cart].nil? || session[:msale_cart].empty? %>">
+            <span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Sale Cart <span class="badge"><%= session[:msale_cart].count unless session[:msale_cart].nil? || session[:msale_cart].empty? %></span>
         </a>
     </li>
     <li>
@@ -26,4 +26,4 @@
   </ul>
 </nav>
 
-<%= session[:staff] %>
+<%= session[:msale_cart] %>

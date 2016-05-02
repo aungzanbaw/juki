@@ -37,8 +37,8 @@
             Sale Orders <span class="caret"></span>
           </a> 
             <ul class="dropdown-menu"> 
-              <li><%= link_to "Parts", parts_sale_path %></li> 
-              <li><%= link_to "Needles", needles_sale_path %></li> 
+              <li><%= link_to "Parts", "#" %></li> 
+              <li><%= link_to "Needles", "#" %></li> 
               <li role="separator" class="divider"></li> 
               <li><a href="#">Separated link</a></li> 
             </ul>
@@ -51,11 +51,11 @@
             Sale Orders <span class="caret"></span>
           </a> 
             <ul class="dropdown-menu"> 
-              <li><%= link_to "Machine sale", machines_sale_path %></li> 
+              <li><%= link_to "Machine", machines_sale_path %></li> 
               <li><a href="#">Delivery Note</a></li> 
               <li><a href="#">Withdraw machines</a></li> 
               <li role="separator" class="divider"></li> 
-              <li><a href="#">Separated link</a></li> 
+              <li><%= link_to "Sale invoices (Machine)", msales_path %></li> 
             </ul>
         </li>
 

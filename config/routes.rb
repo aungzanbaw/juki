@@ -12,7 +12,14 @@ Rails.application.routes.draw do
   post 'update_purchase_cart', to: 'purchases#update_cart' 
   get 'update_purchase_cart', to: 'purchases#update_cart' 
   
-  get 'machines_sale', to: 'sales#machine'
+  get 'machines_sale', to: 'msales#machine'
+
+  get 'msale_cart', to: "msales#cart"
+  get 'add_to_msale_cart', to: "msales#add_cart"
+  get 'remove_from_msale_cart', to: 'msales#remove_cart' 
+  post 'update_msale_cart', to: 'msales#update_cart' 
+  get 'update_msale_cart', to: 'msales#update_cart' 
+  
 
   # Login
   get "login", to: "staffs#login"
@@ -20,6 +27,7 @@ Rails.application.routes.draw do
   get "logout", to: "sessions#destroy"
 
 
+  resources :msales
   resources :purchases
   resources :staffs
   resources :parts

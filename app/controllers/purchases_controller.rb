@@ -80,9 +80,7 @@ class PurchasesController < ApplicationController
           session.delete(:purchase_cart)
           format.html { redirect_to @purchase, notice: 'Purchase was successfully created.' }
           format.json { render :show, status: :created, location: @purchase }
-        end
-
-        
+        end        
         
       else
         format.html { render :new }
