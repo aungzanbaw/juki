@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   get 'update_purchase_cart', to: 'purchases#update_cart' 
   
   get 'machines_sale', to: 'msales#machine'
+  get 'tables_sale', to: 'msales#table'
+  get 'motors_sale', to: 'msales#motor'
+  get 'stands_sale', to: 'msales#stand'
 
   get 'msale_cart', to: "msales#cart"
   get 'add_to_msale_cart', to: "msales#add_cart"

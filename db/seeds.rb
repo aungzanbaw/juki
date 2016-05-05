@@ -8,19 +8,19 @@
 
 Motor.delete_all
 (0..20).each do |var|
-	Motor.create!(brand: "Juki #{var}", name: "JK 1#{var}", watt: var, qty: var+20,price: var+0) 
+	Motor.create!(brand: "Juki #{var}", name: "JK 1#{var}", watt: var, qty: var+20) 
 	puts "Motor record #{var} created!"
 end
 
 Table.delete_all
 (0..20).each do |var|
-	Table.create!(brand: "Juki #{var}", name: "JK 1#{var}", width: var, height: var, qty: var+20,price: var+0) 
+	Table.create!(brand: "Juki #{var}", name: "JK 1#{var}", width: var, height: var, qty: var+20) 
 	puts "Table record #{var} created!"
 end
 
 Stand.delete_all
 (0..20).each do |var|
-	Stand.create!(brand: "Juki #{var}", name: "JK 1#{var}", qty: var+20,price: var+0) 
+	Stand.create!(brand: "Juki #{var}", name: "JK 1#{var}", qty: var+20) 
 	puts "Stand record #{var} created!"
 end
 

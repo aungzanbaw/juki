@@ -15,8 +15,7 @@
       <th>Brand</th>
       <th>Name</th>
       <th>Watt</th>
-      <th>Quantity</th>
-      <th>Price</th>
+      <th>Quantity</th> 
       <th>Cart</th>
     </tr>
   </thead>
@@ -27,8 +26,7 @@
         <td><%= motor.brand %></td>
         <td><%= motor.name %></td>
         <td><%= motor.watt %></td>
-        <td><%= motor.qty %></td>
-        <td><%= motor.price %></td>  
+        <td><%= motor.qty %></td>  
         <td><%= link_to 'Add to cart', add_to_cart_path(id: motor.id, category: motor.class), class: "btn btn-link add_to_cart" %></td>
       </tr>
     <% end %>

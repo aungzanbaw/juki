@@ -16,8 +16,7 @@
       <th>Name</th>
       <th>Width</th>
       <th>Height</th>
-      <th>Quantity</th>
-      <th>Price</th>
+      <th>Quantity</th> 
       <th></th>
     </tr>
   </thead>
@@ -29,8 +28,7 @@
         <td><%= table.name %></td>
         <td><%= table.width %></td>
         <td><%= table.height %></td>
-        <td><%= table.qty %></td>
-        <td><%= table.price %></td>  
+        <td><%= table.qty %></td> 
         <td><%= link_to 'Destroy', table, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

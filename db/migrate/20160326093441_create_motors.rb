@@ -5,8 +5,7 @@ class CreateMotors < ActiveRecord::Migration
       t.string :name
       t.integer :watt
       t.integer :qty
-      t.integer :price
-
+      
       t.timestamps null: false
     end
   end

@@ -14,8 +14,7 @@
     <tr>
       <th>Brand</th>
       <th>Name</th>
-      <th>Quantity</th>
-      <th>Price</th>
+      <th>Quantity</th> 
       <th></th>
     </tr>
   </thead>
@@ -25,8 +24,7 @@
       <tr>
         <td><%= link_to stand.brand, edit_stand_path(stand) %></td>
         <td><%= stand.name %></td>
-        <td><%= stand.qty %></td>
-        <td><%= stand.price %></td>  
+        <td><%= stand.qty %></td>  
         <td><%= link_to 'Destroy', stand, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

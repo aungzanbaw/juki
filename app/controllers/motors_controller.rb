@@ -69,6 +69,6 @@ class MotorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def motor_params
-      params.require(:motor).permit(:brand, :name, :watt, :qty, :price)
+      params.require(:motor).permit(:brand, :name, :watt, :qty)
     end
 end

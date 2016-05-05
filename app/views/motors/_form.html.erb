@@ -15,11 +15,7 @@
   <div class="field form-group">
     <%= f.label :watt %><br>
     <%= f.number_field :watt, class: "form-control", required: 'required', min: 1 %>
-  </div> 
-  <div class="field form-group">
-    <%= f.label :price %><br>
-    <%= f.number_field :price, class: "form-control", required: 'required', min: 1 %>
-  </div>
+  </div>  
   <br>
   <div class="actions">
     <%= f.button :submit => "",class: "btn btn-primary" %> <%= link_to 'Back', motors_path %>

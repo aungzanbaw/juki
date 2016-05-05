@@ -19,11 +19,7 @@
   <div class="field form-group">
     <%= f.label :height %><br>
     <%= f.number_field :height, class: "form-control", required: 'required', min: 1 %>
-  </div>
-  <div class="field form-group">
-    <%= f.label :price %><br>
-    <%= f.number_field :price, class: "form-control", required: 'required', min: 1 %>
-  </div>
+  </div> 
   <br>
   <div class="actions">
     <%= f.button :submit => "",class: "btn btn-primary" %> <%= link_to 'Back', tables_path %>

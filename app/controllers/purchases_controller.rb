@@ -123,19 +123,19 @@ class PurchasesController < ApplicationController
   end
 
   def needle
-    @needles = Needle.all
+    @needles = filter_in_session(session[:purchase_cart], Needle, "Needle")
   end
 
   def motor
-    @motors = Motor.all
+    @motors = filter_in_session(session[:purchase_cart], Motor, "Motor")
   end
 
   def table
-    @tables = Table.all
+    @tables = filter_in_session(session[:purchase_cart], Table, "Table")
   end
 
   def stand
-    @stands = Stand.all
+    @stands = filter_in_session(session[:purchase_cart], Stand, "Stand")
   end
 
   def add_cart

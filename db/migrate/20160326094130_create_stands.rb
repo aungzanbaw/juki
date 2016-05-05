@@ -4,7 +4,6 @@ class CreateStands < ActiveRecord::Migration
       t.string :brand
       t.string :name
       t.integer :qty
-      t.integer :price
 
       t.timestamps null: false
     end
