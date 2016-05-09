@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  
+  
   get 'machines_purchase', to: 'purchases#machine'
   get 'parts_purchase', to: 'purchases#part'
   get 'needles_purchase', to: 'purchases#needle'
@@ -23,13 +25,21 @@ Rails.application.routes.draw do
   post 'update_msale_cart', to: 'msales#update_cart' 
   get 'update_msale_cart', to: 'msales#update_cart' 
   
+  
+  # Debt and Delivery and Chassis
+  get 'msale_chassis', to: 'msales#chassis'
+  post 'update_msale_chassis_cart', to: 'msales#update_msale_chassis' 
+  get 'update_msale_chassis_cart', to: 'msales#update_msale_chassis' 
+  get 'print_chassis', to: 'msales#print_chassis'
+  
 
   # Login
   get "login", to: "staffs#login"
   post "validate", to: "sessions#new"
   get "logout", to: "sessions#destroy"
 
-
+  resources :chasses
+  resources :debts 
   resources :msales
   resources :purchases
   resources :staffs
@@ -41,6 +51,7 @@ Rails.application.routes.draw do
   resources :tables
   resources :motors
   root 'home#index'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

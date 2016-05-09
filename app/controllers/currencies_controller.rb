@@ -4,7 +4,7 @@ class CurrenciesController < ApplicationController
   # GET /currencies
   # GET /currencies.json
   def index
-    @currencies = Currency.order(created_at: :desc)
+    @currencies = Currency.all
   end
 
   # GET /currencies/1

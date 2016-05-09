@@ -4,7 +4,7 @@ class PurchasesController < ApplicationController
   # GET /purchases
   # GET /purchases.json
   def index
-    @purchases = Purchase.order(created_at: :DESC)
+    @purchases = Purchase.all
   end
 
   # GET /purchases/1
