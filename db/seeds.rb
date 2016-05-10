@@ -45,4 +45,13 @@ Part.delete_all
 	puts "Part record #{var} created!"
 end
 
+puts "Delete all sale and purchase records"
+Msale.delete_all
+MsaleDetail.delete_all
+Chassis.delete_all
+Debt.delete_all
+
+Purchase.delete_all
+PurchaseDetail.delete_all
+
 puts "All seeding procedure done"

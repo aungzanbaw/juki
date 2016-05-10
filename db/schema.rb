@@ -70,7 +70,6 @@ ActiveRecord::Schema.define(version: 20160509055550) do
     t.string   "msaleable_type"
     t.integer  "qty"
     t.integer  "price"
-    t.string   "chassis"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
