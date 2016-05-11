@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   
+  resources :withdraws
   get 'machines_purchase', to: 'purchases#machine'
   get 'parts_purchase', to: 'purchases#part'
   get 'needles_purchase', to: 'purchases#needle'

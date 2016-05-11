@@ -11,7 +11,16 @@
         </a>
     </li>
     <li>
-    	<a href="<%= debts_path %>"><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> Debts</a>
+        <% 
+            datas = [] 
+            debts = Debt.where(paid: false)
+            debts.each do |debt|
+              if Date.today.to_date >= debt.date.to_date
+                datas << debt 
+              end
+            end
+        %>
+    	<a href="<%= debts_path %>"><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> Debts <span class="badge"><%= datas.count unless datas.count == 0 || datas.nil? %></span></a>
     </li>
     <li>
     	<a href="#"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Postpone sales <span class="badge">30</span></a>

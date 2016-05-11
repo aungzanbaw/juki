@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160509055550) do
+ActiveRecord::Schema.define(version: 20160511091402) do
 
   create_table "chasses", force: :cascade do |t|
     t.integer  "msale_id"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20160509055550) do
     t.boolean  "debt"
     t.integer  "tax"
     t.boolean  "delivery"
+    t.boolean  "withdraw"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -171,5 +172,15 @@ ActiveRecord::Schema.define(version: 20160509055550) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "withdraws", force: :cascade do |t|
+    t.integer  "msale_id"
+    t.integer  "staff_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "withdraws", ["msale_id"], name: "index_withdraws_on_msale_id"
+  add_index "withdraws", ["staff_id"], name: "index_withdraws_on_staff_id"
 
 end
