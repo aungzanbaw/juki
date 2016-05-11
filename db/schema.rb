@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511091402) do
+ActiveRecord::Schema.define(version: 20160511141350) do
 
   create_table "chasses", force: :cascade do |t|
     t.integer  "msale_id"
@@ -41,6 +41,20 @@ ActiveRecord::Schema.define(version: 20160511091402) do
   end
 
   add_index "debts", ["msale_id"], name: "index_debts_on_msale_id"
+
+  create_table "deliveries", force: :cascade do |t|
+    t.integer  "msale_id"
+    t.integer  "staff_id"
+    t.string   "customer"
+    t.string   "nic"
+    t.string   "address"
+    t.string   "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "deliveries", ["msale_id"], name: "index_deliveries_on_msale_id"
+  add_index "deliveries", ["staff_id"], name: "index_deliveries_on_staff_id"
 
   create_table "machines", force: :cascade do |t|
     t.string   "model"
@@ -83,7 +97,7 @@ ActiveRecord::Schema.define(version: 20160511091402) do
     t.string   "customer"
     t.string   "nic"
     t.string   "address"
-    t.integer  "phone"
+    t.string   "phone"
     t.integer  "total"
     t.boolean  "debt"
     t.integer  "tax"
