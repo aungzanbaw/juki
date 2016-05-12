@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
   
-  
-  resources :deliveries
-  resources :withdraws
   get 'machines_purchase', to: 'purchases#machine'
   get 'parts_purchase', to: 'purchases#part'
   get 'needles_purchase', to: 'purchases#needle'
@@ -36,10 +33,17 @@ Rails.application.routes.draw do
   
 
   # Login
+  post 'admin_login', to: "home#admin_login"
+  get "admin_logout", to: "home#destroy"
+
   get "login", to: "staffs#login"
   post "validate", to: "sessions#new"
   get "logout", to: "sessions#destroy"
 
+  resources :admins
+  resources :sales
+  resources :deliveries
+  resources :withdraws
   resources :chasses
   resources :debts 
   resources :msales

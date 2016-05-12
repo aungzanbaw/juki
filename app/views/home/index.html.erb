@@ -7,6 +7,95 @@
   </div>
 <% end %>
 
-<h1 class="page-header">Hello World</h1>
+<h1>Out of stock Machines</h1>
 
-<h2 class="sub-header">World War 2</h2>
+<table class="datatabled table table-bordered table-hover table-condensed">
+  <thead>
+    <tr>
+      <th>Model</th>
+      <th>Series</th>
+      <th>Myanmar</th>
+      <th>English</th>
+      <th>Description</th>
+      <th>Company</th>
+      <th>Minimum Stock</th>
+      <th>Quantity</th> 
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @machines.each do |machine| %>
+      <tr>
+        <td><p><%= machine.model %></p></td>
+        <td><%= machine.series %></td>
+        <td><%= machine.namemm %></td>
+        <td><%= machine.nameeng %></td>
+        <td><%= truncate(machine.description) %></td>
+        <td><%= machine.company %></td>
+        <td><%= machine.stock %></td>
+        <td><%= machine.qty %></td> 
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<hr>
+<h1>Out of stock Needles</h1>
+<table class="datatabled table table-bordered table-hover table-condensed">
+  <thead>
+    <tr>
+      <th>Model</th>
+      <th>Category</th>
+      <th>Size</th>
+      <th>Machine</th>
+      <th>Minimum stock</th>
+      <th>Quantity</th>
+      <th>Price</th> 
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @needles.each do |needle| %>
+      <tr>
+        <td><%= needle.model %></td>
+        <td><%= needle.category %></td>
+        <td><%= needle.size %></td>
+        <td><%= needle.machine.model %></td>
+        <td><%= needle.stock %></td>
+        <td><%= needle.qty %></td>
+        <td><%= needle.price %></td>  
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<hr>
+<h1>Out of stock Parts</h1>
+<table class="datatabled table table-bordered table-hover table-condensed">
+  <thead>
+    <tr>
+      <th>Model</th>
+      <th>Myanmar</th>
+      <th>English</th>
+      <th>Description</th>
+      <th>Machine</th>
+      <th>Minimum stock</th>
+      <th>Quantity</th>
+      <th>Price</th> 
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @parts.each do |part| %>
+      <tr>
+        <td><%= part.model %></td>
+        <td><%= part.namemm %></td>
+        <td><%= part.nameeng %></td>
+        <td><%= truncate(part.description) %></td>
+        <td><%= part.machine.model %></td>
+        <td><%= part.stock %></td>
+        <td><%= part.qty %></td>
+        <td><%= part.price %></td>  
+      </tr>
+    <% end %>
+  </tbody>
+</table>

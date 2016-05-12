@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511141350) do
+ActiveRecord::Schema.define(version: 20160511161225) do
+
+  create_table "admins", force: :cascade do |t|
+    t.string   "name"
+    t.string   "nic"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "address"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "chasses", force: :cascade do |t|
     t.integer  "msale_id"
@@ -159,6 +170,34 @@ ActiveRecord::Schema.define(version: 20160511141350) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "sale_details", force: :cascade do |t|
+    t.integer  "sale_id"
+    t.integer  "itemable_id"
+    t.string   "itemable_type"
+    t.integer  "qty"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "sale_details", ["sale_id"], name: "index_sale_details_on_sale_id"
+
+  create_table "sales", force: :cascade do |t|
+    t.boolean  "proforma"
+    t.integer  "staff_id"
+    t.string   "customer"
+    t.string   "address"
+    t.string   "nic"
+    t.string   "phone"
+    t.integer  "cash"
+    t.integer  "total"
+    t.boolean  "postpone"
+    t.integer  "tax"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "sales", ["staff_id"], name: "index_sales_on_staff_id"
 
   create_table "staffs", force: :cascade do |t|
     t.string   "name"

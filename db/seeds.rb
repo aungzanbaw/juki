@@ -33,8 +33,12 @@ end
 Staff.delete_all
 (0..20).each do |var|
 	Staff.create!(name: "Name #{var}", phone: 9123123+var, address: "no#{var} Blar street", password_digest: "12312#{var}") 
-	puts "Currency record #{var} created!"
+	puts "Staff record #{var} created!"
 end
+
+Admin.delete_all 
+Admin.create!(name: "Name", phone: 91231, address: "n Blar street", password_digest: "1231") 
+puts "Admin record created!" 
 
 Machine.delete_all
 Needle.delete_all
