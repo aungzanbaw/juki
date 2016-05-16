@@ -1,0 +1,11 @@
+<%= form_for(@withdraw) do |f| %>
+  <div class="field form-group">
+    <%= f.label :staff_id %><br> 
+    <%= f.collection_select :staff_id, Staff.all, :id, :name, {prompt: false}, {:class => "form-control"} %>
+    <%= f.hidden_field :msale_id, value: params[:msale] %>
+    
+  </div>
+  <div class="actions">
+    <%= f.button :submit => "",class: "btn btn-primary" %> <%= link_to 'Back', msales_path %>
+  </div>
+<% end %>

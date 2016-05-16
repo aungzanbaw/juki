@@ -1,0 +1,52 @@
+<%= form_for(@debt) do |f| %>
+  <% if @debt.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@debt.errors.count, "error") %> prohibited this debt from being saved:</h2>
+
+      <ul>
+      <% @debt.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group"> 
+    <%= f.hidden_field :msale_id, value: params["msale"] %>
+  </div> 
+  
+  <% if params["action"] == "edit" %>
+     <div class="field form-group">
+      <%= f.label :amount %><br>
+      <%= f.number_field :amount, class: "form-control", disabled: "disabled" %>
+    </div>
+    
+    <div class="field form-group">
+      <%= f.label :date %><br>
+      <%= f.date_field :date, class: "form-control", disabled: "disabled" %>
+    </div> 
+  <% else %>
+    <% debt_total = Debt.where(msale_id: params[:msale]).sum(:amount)
+      if debt_total >= @msale.total %>
+      <div class="field form-group">
+        <%= f.label :amount %><br>
+        <%= f.number_field :amount, class: "form-control", disabled: "disabled" %>
+      </div>
+    <% else %>
+      <div class="field form-group">
+        <%= f.label :amount %><br>
+        <%= f.number_field :amount, class: "form-control", required: 'required', min: 1, max: @msale.total.to_i - debt_total %>
+      </div>  
+    <% end %>
+
+    <div class="field form-group">
+      <%= f.label :date %><br>
+      <%= f.date_field :date, class: "form-control", required: 'required' %>
+    </div> 
+  <% end %> 
+
+  <div class="actions">
+    <%= f.button :submit => "",class: "btn btn-primary" %> <%= link_to 'Back', msales_path %>
+  </div>
+<% end %>
+

@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  proforma: false
+  staff_id: 
+  customer: MyString
+  address: MyString
+  nic: MyString
+  phone: MyString
+  cash: 1
+  total: 1
+  postpone: false
+  tax: 1
+
+two:
+  proforma: false
+  staff_id: 
+  customer: MyString
+  address: MyString
+  nic: MyString
+  phone: MyString
+  cash: 1
+  total: 1
+  postpone: false
+  tax: 1

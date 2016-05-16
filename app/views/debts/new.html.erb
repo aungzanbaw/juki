@@ -1,0 +1,37 @@
+<% if @debts.count == 0 || @debts.empty? %>
+	<h1>No debts for this Machine Sale</h1>
+<% else %> 
+	<h1>Debts list for <%= "MSINV#"+@msale.id.to_s + @msale.created_at.year.to_s + @msale.created_at.month.to_s + @msale.created_at.day.to_s %></h1>
+	
+
+<table class="table table-bordered table-hover table-condensed">
+  <thead>
+    <tr>
+      <th>Amount</th>
+      <th>Date</th> 
+      <th>Paid</th>
+      <th>Menu</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  	<% @debts.each do |deb| %>
+      <tr> 
+        <td><%= number_to_currency(deb.amount) %></td>
+        <td><%= deb.date %></td>
+        <td><%= deb.paid %></td> 
+        <td><%= link_to "Paid", edit_debt_path(id: deb.id, msale: deb.msale_id) %></td> 
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% end %>
+
+<hr>
+
+
+
+<h2>Add new debt - total <%= number_to_currency(Msale.find(params["msale"]).total) %> need to be paid </h2>
+
+<%= render 'form' %>

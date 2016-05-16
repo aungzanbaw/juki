@@ -1,0 +1,34 @@
+<% unless notice.nil? || notice.empty? %>
+  <div class="alert alert-success alert-dismissible fade in" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">×</span>
+    </button>
+        <p id="notice"><%= notice %></p>   
+  </div>
+<% end %>
+
+<h1>Motor Sale Order</h1>
+
+<table class="datatabled table table-bordered table-hover table-condensed">
+  <thead>
+    <tr>
+      <th>Brand</th>
+      <th>Name</th>
+      <th>Watt</th>
+      <th>Quantity</th> 
+      <th>Cart</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @motors.each do |motor| %>
+      <tr>
+        <td><%= motor.brand %></td>
+        <td><%= motor.name %></td>
+        <td><%= motor.watt %></td>
+        <td><%= motor.qty %></td> 
+        <td><%= link_to 'Add to cart', add_to_msale_cart_path(id: motor.id, category: motor.class), class: "btn btn-link add_to_cart" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table> 

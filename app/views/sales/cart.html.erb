@@ -1,0 +1,78 @@
+<h1>Sale Cart</h1>  
+
+<% unless notice.nil? || notice.empty? %>
+  <div class="alert alert-success alert-dismissible fade in" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">×</span>
+    </button>
+        <p id="notice"><%= notice %></p>   
+  </div>
+<% end %>
+
+<%= form_tag('update_sale_cart', method: :post) do  %>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+    	<th>#</th>
+      <th>Name</th> 
+      <th>Category</th> 
+      <th>Quantity</th>
+      <th>Rate</th>
+      <th>Amount</th>
+      <th>Menu</th> 
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @datas.each do |data| %>
+      <tr>
+        <td><%= data["id"] %></td> 
+        <td><%= data["name"] %></td>   
+        <td><%= data["category"] %></td>   
+        <td> 
+          <!-- other type rather than Machine don't have a special field called stock to warm about stock level -->
+          <%
+            price = 0
+            case data["category"] 
+            when "Part"
+              @part = Part.find(data["id"])
+              qty = @part.qty  
+              price = @part.price
+            when "Needle"
+              @needle = Needle.find(data["id"])
+              qty = @needle.qty 
+              price = @needle.price
+            end 
+          %>
+        	<input type="number" min="0" max="<%= qty %>" value="<%= data["qty"] %>" class="form-control" id="q<%= data["category"] %><%= data["id"] %>" name="q<%= data["category"] %><%= data["id"] %>" required="required"/>
+        </td> 
+        <td>          
+        	<%= price %>
+        </td>
+        <td><%= data["qty"].to_i * data["price"].to_i %></td>  
+        <td> 
+        	<%= link_to 'Remove', remove_from_sale_cart_path(id: data["id"], category: data["category"]), class: "btn btn-link" %>
+        </td>
+      </tr>
+    <% end %>
+    <tr>
+    	<td colspan="5"></td>
+    	<td>Subtotal</td>
+    	<td><%= number_to_currency(@total) %></td>
+    </tr>
+    <tr>
+    	<td colspan="5"></td>
+    	<td>Tax</td>
+    	<td>0</td>
+    </tr>
+    <tr>
+    	<td colspan="6"></td> 
+    	<td>
+    		<%= submit_tag("Update",class: "btn btn-success") %>
+	    	<%= link_to 'Checkout', new_sale_path , class: "btn btn-primary" %>
+    	</td>
+    </tr>
+  </tbody>
+</table>
+<% end %>

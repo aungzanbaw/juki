@@ -1,4 +1,5 @@
 class StandsController < ApplicationController
+  before_filter :authenticate
   before_action :set_stand, only: [:show, :edit, :update, :destroy]
 
   # GET /stands

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  msale_id: 
+  msaleable_id: 1
+  msaleable_type: MyString
+  qty: 1
+  price: 1
+  chassis: MyString
+
+two:
+  msale_id: 
+  msaleable_id: 1
+  msaleable_type: MyString
+  qty: 1
+  price: 1
+  chassis: MyString

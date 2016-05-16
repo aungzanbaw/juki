@@ -1,0 +1,37 @@
+<% unless notice.nil? || notice.empty? %>
+  <div class="alert alert-success alert-dismissible fade in" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">×</span>
+    </button>
+        <p id="notice"><%= notice %></p>   
+  </div>
+<% end %>
+
+<h1>Listing Staffs</h1>
+
+<table class="datatabled table table-bordered table-hover table-condensed">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Address</th>
+      <th>Password</th>
+      <th colspan=""></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @staffs.each do |staff| %>
+      <tr>
+        <td><%= link_to staff.name, edit_staff_path(staff) %></td>
+        <td><%= staff.phone %></td>
+        <td><%= staff.address %></td>
+        <td><%= staff.password_digest %></td> 
+        <td><%= link_to 'Destroy', staff, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br> 
+<%= link_to 'New Staff', new_staff_path, class: "btn btn-primary" %>

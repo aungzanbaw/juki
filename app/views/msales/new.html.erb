@@ -1,0 +1,36 @@
+<h1>New Machine Sale</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+    	<th>#</th>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Price</th> 
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @datas.each do |data| %>
+      <tr>
+        <td><%= data["id"] %></td> 
+        <td><%= data["name"] %></td> 
+        <td><%= data["qty"] %></td> 
+        <td><%= data["price"] %></td> 
+      </tr>
+    <% end %>
+    <tr>
+    	<td colspan="2"></td>
+    	<td>Subtotal</td>
+    	<td><%= number_to_currency(@total) %></td>
+    </tr>
+    <tr>
+    	<td colspan="2"></td>
+    	<td>Tax</td>
+    	<td>0</td>
+    </tr>
+    
+  </tbody>
+</table>
+
+<%= render 'form' %>

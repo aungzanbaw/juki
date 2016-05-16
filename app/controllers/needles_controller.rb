@@ -1,4 +1,5 @@
 class NeedlesController < ApplicationController
+  before_filter :authenticate
   before_action :set_needle, only: [:show, :edit, :update, :destroy]
 
   # GET /needles

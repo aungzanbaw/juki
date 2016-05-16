@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Deliveries</h1>
+
+<table class="datatabled table table-bordered table-hover table-condensed">
+  <thead>
+    <tr>
+      <th>Msale</th>
+      <th>Staff</th>
+      <th>Customer</th> 
+      <th>Date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @deliveries.each do |delivery| %>
+      <tr>
+        <% msales = Msale.find(delivery.msale_id) %>
+        <td><%= link_to  "MSINV#"+msales.id.to_s + msales.created_at.year.to_s + msales.created_at.month.to_s + msales.created_at.day.to_s, msales %></td>
+        <td><%= delivery.staff.name %></td>
+        <td><%= delivery.customer %></td> 
+        <td><%= delivery.created_at %></td> 
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  msale_id: 
+  msale_detail_id: 
+  chassisnum: MyString
+
+two:
+  msale_id: 
+  msale_detail_id: 
+  chassisnum: MyString

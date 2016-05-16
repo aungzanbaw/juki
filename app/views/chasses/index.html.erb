@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Chasses</h1>
+
+<table class="datatabled table table-bordered table-hover table-condensed">
+  <thead>
+    <tr>
+      <th>Machine Sale Invioce</th>
+      <th>Customer</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @msales.each do |msale| %>
+      <tr>
+        <td><%= link_to  "MSINV#"+msale.id.to_s + msale.created_at.year.to_s + msale.created_at.month.to_s + msale.created_at.day.to_s, msale %></td>
+        <td><%= msale.customer %></td>
+        <td><%= msale.total %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

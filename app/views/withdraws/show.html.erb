@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Msale:</strong>
+  <%= @withdraw.msale %>
+</p>
+
+<p>
+  <strong>Staff:</strong>
+  <%= @withdraw.staff %>
+</p>
+
+<%= link_to 'Edit', edit_withdraw_path(@withdraw) %> |
+<%= link_to 'Back', withdraws_path %>

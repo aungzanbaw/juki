@@ -1,0 +1,24 @@
+<h1>Machines Chassis for invoice <%= "MSINV#"+@msale.id.to_s + @msale.created_at.year.to_s + @msale.created_at.month.to_s + @msale.created_at.day.to_s %></h1>  
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+    	<th>Machine1</th> 
+      <th>Chassis</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @datas.each do |data| %>  
+      <tr>
+        <% machine = Machine.find(@msale) %>
+        <td><%= machine.model %></td>
+        <% chassis = Chassis.where(msale_id: data["msale_id"], msale_detail_id: data["id"]) 
+        	chassis.each do |chass|
+        %>
+        <td><%= chass.chassisnum %></td>        
+        <% end %>
+      </tr>      
+    <% end %>  
+  </tbody>
+</table>

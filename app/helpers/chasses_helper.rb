@@ -1,0 +1,2 @@
+module ChassesHelper
+end

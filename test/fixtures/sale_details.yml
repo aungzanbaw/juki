@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sale_id: 
+  itemable_id: 1
+  itemable_type: MyString
+  qty: 1
+
+two:
+  sale_id: 
+  itemable_id: 1
+  itemable_type: MyString
+  qty: 1

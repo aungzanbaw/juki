@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Withdraws</h1>
+
+<table class="datatabled table table-bordered table-hover table-condensed">
+  <thead>
+    <tr>
+      <th>Msale</th>
+      <th>Staff</th> 
+      <th>Date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @withdraws.each do |withdraw| %>
+      <tr>
+        <% msales = Msale.find(withdraw.msale_id) %>
+        <td><%= link_to  "MSINV#"+msales.id.to_s + msales.created_at.year.to_s + msales.created_at.month.to_s + msales.created_at.day.to_s, msales %></td> 
+        <td><%= withdraw.staff.name %></td> 
+        <td><%= withdraw.created_at %></td> 
+      </tr>
+    <% end %>
+  </tbody>
+</table> 

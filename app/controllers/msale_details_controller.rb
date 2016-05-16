@@ -1,0 +1,3 @@
+class MsaleDetailsController < ApplicationController
+
+end

@@ -1,0 +1,29 @@
+<%= form_for(@chass) do |f| %>
+  <% if @chass.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@chass.errors.count, "error") %> prohibited this chass from being saved:</h2>
+
+      <ul>
+      <% @chass.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :msale_id %><br>
+    <%= f.text_field :msale_id %>
+  </div>
+  <div class="field">
+    <%= f.label :msale_detail_id %><br>
+    <%= f.text_field :msale_detail_id %>
+  </div>
+  <div class="field">
+    <%= f.label :chassisnum %><br>
+    <%= f.text_field :chassisnum %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

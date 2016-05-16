@@ -1,4 +1,5 @@
 class PartsController < ApplicationController
+  before_filter :authenticate
   before_action :set_part, only: [:show, :edit, :update, :destroy]
 
   # GET /parts

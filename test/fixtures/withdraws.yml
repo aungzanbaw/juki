@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  msale_id: 
+  staff_id: 
+
+two:
+  msale_id: 
+  staff_id: 

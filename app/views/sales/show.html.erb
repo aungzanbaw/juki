@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Proforma:</strong>
+  <%= @sale.proforma %>
+</p>
+
+<p>
+  <strong>Staff:</strong>
+  <%= @sale.staff %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @sale.customer %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @sale.address %>
+</p>
+
+<p>
+  <strong>Nic:</strong>
+  <%= @sale.nic %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @sale.phone %>
+</p>
+
+<p>
+  <strong>Cash:</strong>
+  <%= @sale.cash %>
+</p>
+
+<p>
+  <strong>Total:</strong>
+  <%= @sale.total %>
+</p>
+
+<p>
+  <strong>Postpone:</strong>
+  <%= @sale.postpone %>
+</p>
+
+<p>
+  <strong>Tax:</strong>
+  <%= @sale.tax %>
+</p>
+
+<%= link_to 'Edit', edit_sale_path(@sale) %> |
+<%= link_to 'Back', sales_path %>

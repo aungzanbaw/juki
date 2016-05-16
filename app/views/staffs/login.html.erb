@@ -1,0 +1,16 @@
+<h1>Staff Login</h1>
+
+<%= form_tag('validate', method: :post) do  %>
+  
+  <div class="field form-group">
+    <%= label_tag :name %><br>
+    <%= text_field_tag(:name,nil, class: "form-control", required: 'required') %>
+  </div> 
+  <div class="field form-group">
+    <%= label :password_digest, "Password" %><br>
+    <%= password_field_tag :password_digest, nil, class: "form-control", required: 'required' %>
+  </div>
+  <div class="actions">
+    <%= submit_tag("Login",class: "btn btn-primary") %> <%= link_to 'Back', root_path %>
+  </div>  
+<% end %>

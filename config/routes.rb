@@ -1,29 +1,40 @@
 Rails.application.routes.draw do
   
+  # purchase carts
   get 'machines_purchase', to: 'purchases#machine'
   get 'parts_purchase', to: 'purchases#part'
   get 'needles_purchase', to: 'purchases#needle'
   get 'motors_purchase', to: 'purchases#motor'
   get 'tables_purchase', to: 'purchases#table'
   get 'stands_purchase', to: 'purchases#stand'
-  
+  # Purchase cart
   get 'purchase_cart', to: 'purchases#cart'
   get 'add_to_cart', to: 'purchases#add_cart' 
   get 'remove_from_cart', to: 'purchases#remove_cart' 
   post 'update_purchase_cart', to: 'purchases#update_cart' 
   get 'update_purchase_cart', to: 'purchases#update_cart' 
   
+  # Msalecart
   get 'machines_sale', to: 'msales#machine'
   get 'tables_sale', to: 'msales#table'
   get 'motors_sale', to: 'msales#motor'
   get 'stands_sale', to: 'msales#stand'
+  # Sale cart
+  get 'parts_sale', to: 'sales#part'
+  get 'needles_sale', to: 'sales#needle'
 
+  # Msale Cart
   get 'msale_cart', to: "msales#cart"
   get 'add_to_msale_cart', to: "msales#add_cart"
   get 'remove_from_msale_cart', to: 'msales#remove_cart' 
   post 'update_msale_cart', to: 'msales#update_cart' 
   get 'update_msale_cart', to: 'msales#update_cart' 
-  
+  # Sale Cart
+  get 'sale_cart', to: "sales#cart"
+  get 'add_to_sale_cart', to: "sales#add_cart"
+  get 'remove_from_sale_cart', to: 'sales#remove_cart' 
+  post 'update_sale_cart', to: 'sales#update_cart' 
+  get 'update_sale_cart', to: 'sales#update_cart' 
   
   # Debt and Delivery and Chassis
   get 'msale_chassis', to: 'msales#chassis'
@@ -36,7 +47,7 @@ Rails.application.routes.draw do
   post 'admin_login', to: "home#admin_login"
   get "admin_logout", to: "home#destroy"
 
-  get "login", to: "staffs#login"
+  get "staff_login", to: "staffs#login"
   post "validate", to: "sessions#new"
   get "logout", to: "sessions#destroy"
 

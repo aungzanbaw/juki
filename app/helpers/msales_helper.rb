@@ -1,0 +1,2 @@
+module MsalesHelper
+end

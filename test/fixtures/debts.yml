@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  msale_id: 
+  amount: 1
+  date: 2016-05-06
+  paid: false
+
+two:
+  msale_id: 
+  amount: 1
+  date: 2016-05-06
+  paid: false

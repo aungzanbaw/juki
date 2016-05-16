@@ -1,0 +1,127 @@
+<h1 class="text-center">Sale Invoice</h1>
+
+<table class="table table-bordered table-condensed">
+  <tbody> 
+    <tr>
+      <td><b>Customer / Company</b></td>
+      <td><%= @msale.customer %></td>
+    </tr>
+
+    <tr>
+      <td><b>NIC</b></td>
+      <td><%= @msale.nic %></td>
+    </tr>
+
+    <tr>
+      <td><b>Address</b></td>
+      <td><%= @msale.address %></td>
+    </tr>
+
+    <tr>
+      <td><b>Phone</b></td>
+      <td><%= @msale.phone %></td>
+    </tr>
+
+    <tr>
+      <td><b>Total</b></td>
+      <td><%= number_to_currency(@msale.total) %></td>
+    </tr>
+
+    <tr>
+    <td><strong>Tax:</strong></td>
+    <td><%= @msale.tax %></td>
+    </tr>
+
+    <tr>
+      <td><b>Date</b></td>
+      <td><%= @msale.created_at %></td>
+    </tr>
+
+    <tr>
+      <td><b>Invoice</b></td>
+      <td>MSINV#<%= @msale.id.to_s + @msale.created_at.year.to_s + @msale.created_at.month.to_s + @msale.created_at.day.to_s%></td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-bordered">
+  <thead>
+    <tr> 
+      <th>Name</th> 
+      <th>Category</th> 
+      <th>Quantity</th>
+      <th>Rate</th> 
+      <th>Amount</th> 
+    </tr>
+  </thead>
+
+  <tbody>
+    <% 
+      @msale_details.each do |msale|
+    %>
+      <tr>
+        <% output = ""
+          case msale["msaleable_type"]
+          when "Machine"
+            output = msale.msaleable["model"] 
+          when "Part"
+            output = msale.msaleable["model"] + " (" + msale.msaleable.machine["model"] + ")"
+          when "Needle"
+            output = msale.msaleable["model"]+ " " + msale.msaleable["category"] + " (" +msale.msaleable["size"].to_s + ")"
+          when "Motor"
+            output = msale.msaleable["brand"] +" "+ msale.msaleable["name"] + " (" + msale.msaleable["watt"].to_s + " W)" 
+          when "Table"
+            output = msale.msaleable["brand"] +" "+ msale.msaleable["name"] + " (" + msale.msaleable["width"].to_s + " x " + msale.msaleable["height"].to_s + ")"
+          when "Stand"
+            output = msale.msaleable["brand"] + " " + msale.msaleable["name"]
+          end
+        %>
+        <td><%= output %></td>
+        <td><%= msale["msaleable_type"] %></td>
+        <td><%= msale["qty"] %></td>
+        <td><%= msale["price"] %></td> 
+        <td><%= msale["qty"].to_i * msale["price"].to_i %></td> 
+      </tr>
+    <% end %>
+    <tr>
+      <td colspan="3"></td>
+      <td>Subtotal</td>
+      <td><%= number_to_currency(@msale.total) %></td>
+    </tr>
+    <tr>
+      <td colspan="3"></td>
+      <td>Tax</td>
+      <td>0</td>
+    </tr> 
+    <tr>
+      <td colspan="3"></td>
+      <td>Grand Total</td>
+      <td><%= number_to_currency(@msale.total) %></td>
+    </tr>
+  </tbody>
+</table>
+
+<% unless @chasses.nil? || @chasses.empty? %>
+  <table class="table table-bordered">
+    <thead>
+      <tr> 
+        <th>Machine</th> 
+        <th>Chassis</th>
+      </tr>
+    </thead>
+    <tbody>
+    
+    <% @msale_details.each do |data| %>
+      <% data["qty"].times do |qty_local| 
+        chassis = Chassis.find_by(msale_id: params["id"], msale_detail_id: data["id"])
+      %>
+      <tr>
+        <td><%= data.msaleable.model %></td>
+        <td><%= chassis.chassisnum %></td>
+      </tr>
+      <% end %>
+    <% end %>
+
+    </tbody>
+  </table>
+<% end %>

@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Overdue Debts</h1>
+
+<table class="datatabled table table-bordered table-hover table-condensed">
+  <thead>
+    <tr>
+      <th>Msale</th>
+      <th>Amount</th>
+      <th>Due Date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @datas.each do |debt| %>
+      <tr>
+        <td>
+          <% if debt.msale.proforma == false %>
+            <%= link_to "MSINV#"+debt.msale.id.to_s + debt.msale.created_at.year.to_s + debt.msale.created_at.month.to_s + debt.msale.created_at.day.to_s, new_debt_path(msale: debt.msale.id), class: "btn btn-primary" %>
+          <% end %> 
+        </td>
+        <td><%= debt.amount %></td>
+        <td><%= debt.date %></td> 
+      </tr>
+    <% end %>
+  </tbody>
+</table>
