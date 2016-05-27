@@ -188,7 +188,7 @@ class MsalesController < ApplicationController
   def update_cart
     session[:msale_cart].each do |stuff| 
       stuff["price"] = params["p"+stuff["category"]+stuff["id"]] unless params["p"+stuff["category"]+stuff["id"]] == nil 
-      stuff["qty"] = params["q"+stuff["category"]+stuff["id"]] unless params["p"+stuff["category"]+stuff["id"]] == nil
+      stuff["qty"] = params["q"+stuff["category"]+stuff["id"]] unless params["q"+stuff["category"]+stuff["id"]] == nil
     end
     redirect_to msale_cart_url, notice: "Updated - operation success"
   end
@@ -198,16 +198,17 @@ class MsalesController < ApplicationController
   end
 
   def update_msale_chassis
+    
     @datas = MsaleDetail.where(msale_id: params["msale"], msaleable_type: "Machine") 
     
     @datas.each do |data| 
       data["qty"].times do |qty_local| 
-        Chassis.find_or_create_by(msale_id: params["msale"], msale_detail_id: data["id"], chassisnum: params[data["id"].to_s+"q"+qty_local.to_s])
+        Chassis.create(msale_id: params["msale"], msale_detail_id: data["id"], chassisnum: params[data["id"].to_s+"q"+qty_local.to_s])
       end 
     end
 
     @msale = Msale.find(params["msale"])
-    
+      
     render :print_chassis 
 
   end

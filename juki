@@ -1,0 +1,29 @@
+MOTOR brand:string, name:string, watt:integer, qty:integer
+TABLE brand:string, name:string, width:integer, height:integer, qty:integer
+STAND brand:string, name:string, qty:integer
+MACHINE model:string, series:string, namemm:string, nameeng:string, description:text, company:string, stock:integer, qty:integer
+CURRENCY burma:integer, us:integer
+NEEDLE model:string, category:string, machine_id:references, stock:integer, qty:integer, price:integer, size:string
+PART model:string, namemm:string, nameeng:string, description:text, machine_id:references, stock:integer, qty:integer, price:integer
+
+PURCHASE name:string, address:string, nic:string, phone:string, total:integer, TAX:integer
+PURCHASE_DETAIL purchase_id:references stockable_id:integer, stockable_type:string, qty:integer, price:integer
+
+MSALE proforma:boolean, customer:string, nic:string, address:string, phone:string, total:integer, debt:boolean, TAX:integer
+MSALE_DETAIL msale_id:references, msaleable_id:integer, msaleable_type:string, qty:integer, price:integer
+CHASSIS msale_id:references, msale_detail_id:references, chassis:string
+DEBT msale_id:references, amount:integer, date:date, paid:boolean
+
+WITHDRAW msale_id:references, staff_id:references
+DELIVERY msale_id:references, staff_id:references, customer:string, NIC:string, address:string, phone:string
+
+SALE proforma:boolean, staff_id:references, customer:string, address:string, NIC:string, phone:string, cash:integer, total:integer, postpone:boolean, TAX:integer
+SALE_DETAIL sale_id:references itemable_id:integer, itemable_type:string, qty:integer
+
+STAFF name:string, nic:string, phone:string, email:string, address:string, password_digest:string
+ADMIN name:string, nic:string, phone:string, email:string
+
+session[:msale_cart]
+session[:purchase_cart]
+session[:admin]
+session[:staff]

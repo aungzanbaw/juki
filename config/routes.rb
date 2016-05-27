@@ -39,15 +39,18 @@ Rails.application.routes.draw do
   # Debt and Delivery and Chassis
   get 'msale_chassis', to: 'msales#chassis'
   post 'update_msale_chassis_cart', to: 'msales#update_msale_chassis' 
-  get 'update_msale_chassis_cart', to: 'msales#update_msale_chassis' 
+  # get 'update_msale_chassis_cart', to: 'msales#update_msale_chassis' 
   get 'print_chassis', to: 'msales#print_chassis'
   
 
   # Login
   post 'admin_login', to: "home#admin_login"
   get "admin_logout", to: "home#destroy"
+  get "post_pone_sale", to: "home#post_pone_sale"
+  get "all_sale", to: "home#all_sale"
 
   get "staff_login", to: "staffs#login"
+  get "staff_home", to: "sessions#home"
   post "validate", to: "sessions#new"
   get "logout", to: "sessions#destroy"
 

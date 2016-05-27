@@ -13,8 +13,7 @@
 
 <table class="table table-bordered">
   <thead>
-    <tr>
-    	<th>#</th>
+    <tr> 
       <th>Name</th> 
       <th>Category</th> 
       <th>Quantity</th>
@@ -26,12 +25,11 @@
 
   <tbody>
     <% @datas.each do |data| %>
-      <tr>
-        <td><%= data["id"] %></td> 
+      <tr>  
         <td><%= data["name"] %></td>   
         <td><%= data["category"] %></td>   
         <td> 
-          <!-- other type rather than Machine don't have a special field called stock to warm about stock level -->
+          <!-- Other type rather than Machine don't have a special field called stock to warm about stock level -->
           <%
             price = 0
             case data["category"] 
@@ -50,24 +48,24 @@
         <td>          
         	<%= price %>
         </td>
-        <td><%= data["qty"].to_i * data["price"].to_i %></td>  
+        <td><%= data["qty"].to_i * price.to_i %></td>  
         <td> 
         	<%= link_to 'Remove', remove_from_sale_cart_path(id: data["id"], category: data["category"]), class: "btn btn-link" %>
         </td>
       </tr>
     <% end %>
     <tr>
-    	<td colspan="5"></td>
+    	<td colspan="4"></td>
     	<td>Subtotal</td>
     	<td><%= number_to_currency(@total) %></td>
     </tr>
     <tr>
-    	<td colspan="5"></td>
-    	<td>Tax</td>
-    	<td>0</td>
+    	<td colspan="4"></td>
+    	<td></td>
+    	<td></td>
     </tr>
     <tr>
-    	<td colspan="6"></td> 
+    	<td colspan="5"></td> 
     	<td>
     		<%= submit_tag("Update",class: "btn btn-success") %>
 	    	<%= link_to 'Checkout', new_sale_path , class: "btn btn-primary" %>

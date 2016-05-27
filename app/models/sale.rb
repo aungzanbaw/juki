@@ -1,5 +1,7 @@
 class Sale < ActiveRecord::Base
+	belongs_to :currency
   belongs_to :staff
+  
   
   def self.valid_get_params(category, id)
 		unless category.nil? || category.empty? || id.nil? || id.empty? 

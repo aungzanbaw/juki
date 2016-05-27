@@ -10,48 +10,28 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :proforma %><br>
-    <%= f.check_box :proforma %>
+  
+  <div class="field form-group">
+    <%= f.label :customer, "Customer / Company" %><br>
+    <%= f.text_field :customer, class: "form-control", required: 'required' %>
   </div>
-  <div class="field">
-    <%= f.label :staff_id %><br>
-    <%= f.text_field :staff_id %>
-  </div>
-  <div class="field">
-    <%= f.label :customer %><br>
-    <%= f.text_field :customer %>
-  </div>
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :address %><br>
-    <%= f.text_field :address %>
+    <%= f.text_field :address, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :nic %><br>
-    <%= f.text_field :nic %>
+  <div class="field form-group">
+    <%= f.label :nic,"NIC" %><br>
+    <%= f.text_field :nic, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :phone %><br>
-    <%= f.text_field :phone %>
+    <%= f.text_field :phone, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :cash %><br>
-    <%= f.number_field :cash %>
-  </div>
-  <div class="field">
-    <%= f.label :total %><br>
-    <%= f.number_field :total %>
-  </div>
-  <div class="field">
-    <%= f.label :postpone %><br>
-    <%= f.check_box :postpone %>
-  </div>
-  <div class="field">
-    <%= f.label :tax %><br>
-    <%= f.number_field :tax %>
-  </div>
+    <%= f.number_field :cash, class: "form-control", max: @total %>
+  </div>  
   <div class="actions">
-    <%= f.submit %>
+    <%= f.button :submit => "Create Sale",class: "btn btn-primary" %> or <%= link_to 'Back', staff_home_path %>
   </div>
 <% end %>

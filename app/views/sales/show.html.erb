@@ -1,54 +1,116 @@
-<p id="notice"><%= notice %></p>
+<h2></h2>
 
-<p>
-  <strong>Proforma:</strong>
-  <%= @sale.proforma %>
-</p>
+<h3 class="text-center">Sale Invoice</h2>
 
-<p>
-  <strong>Staff:</strong>
-  <%= @sale.staff %>
-</p>
+<table class="table table-bordered table-condensed">
+  <tbody> 
+    <tr>
+      <td><b>Staff</b></td>
+      <td><%= @sale.staff.name %></td>
+    </tr>
 
-<p>
-  <strong>Customer:</strong>
-  <%= @sale.customer %>
-</p>
+    <tr>
+      <td><b>Customer / Company</b></td>
+      <td><%= @sale.customer %></td>
+    </tr>
+    
+    <% unless @sale.nic == "" %>
+    <tr>
+      <td><b>NIC</b></td>
+      <td><%= @sale.nic %></td>
+    </tr>
+    <% end %>
 
-<p>
-  <strong>Address:</strong>
-  <%= @sale.address %>
-</p>
+    <% unless @sale.address == "" %>
+    <tr>
+      <td><b>Address</b></td>
+      <td><%= @sale.address %></td>
+    </tr>
+    <% end %>
 
-<p>
-  <strong>Nic:</strong>
-  <%= @sale.nic %>
-</p>
+    <% unless @sale.phone == "" %>
+    <tr>
+      <td><b>Phone</b></td>
+      <td><%= @sale.phone %></td>
+    </tr>
+    <% end %>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @sale.phone %>
-</p>
+    <% if @sale.postpone == true %>
+      <tr>
+      <td><b>Debit</b></td>
+      <td><%= @sale.cash %></td>
+    </tr>
+    <% end %>
 
-<p>
-  <strong>Cash:</strong>
-  <%= @sale.cash %>
-</p>
+    <tr>
+      <td><b>Date</b></td>
+      <td><%= @sale.created_at %></td>
+    </tr>
 
-<p>
-  <strong>Total:</strong>
-  <%= @sale.total %>
-</p>
+    <tr>
+      <td><b>Invoice</b></td>
+      <td>SINV#<%= @sale.id.to_s + @sale.created_at.year.to_s + @sale.created_at.month.to_s + @sale.created_at.day.to_s%></td>
+    </tr>
+  </tbody>
+</table>
 
-<p>
-  <strong>Postpone:</strong>
-  <%= @sale.postpone %>
-</p>
+<table class="table table-bordered table-condensed">
+  <thead>
+    <tr> 
+      <th>Name</th> 
+      <th>Category</th> 
+      <th>Quantity</th>
+      <th>Rate</th> 
+      <th>Amount</th> 
+    </tr>
+  </thead>
 
-<p>
-  <strong>Tax:</strong>
-  <%= @sale.tax %>
-</p>
-
-<%= link_to 'Edit', edit_sale_path(@sale) %> |
-<%= link_to 'Back', sales_path %>
+  <tbody>
+    <% 
+      @sale_details.each do |sale|
+    %>
+      <tr>
+        <% output = ""
+          case sale["itemable_type"] 
+          when "Part"
+            output = sale.itemable["model"] + " (" + sale.itemable.machine["model"] + ")"
+          when "Needle"
+            output = sale.itemable["model"]+ " " + sale.itemable["category"] + " (" +sale.itemable["size"].to_s + ")" 
+          end
+        %>
+        <td><%= output %></td>
+        <td><%= sale["itemable_type"] %></td>
+        <td><%= sale["qty"] %></td>
+        <%
+          price = 0
+          case sale["itemable_type"] 
+          when "Part"
+            @part = Part.find(sale["itemable_id"])
+            price = @part.price
+          when "Needle"
+            @needle = Needle.find(sale["itemable_id"])
+            price = @needle.price
+          end 
+        %>
+        <td><%= price %></td>
+        <td><%= sale["qty"].to_i * price.to_i %></td> 
+      </tr>
+    <% end %>
+    <tr>
+      <td colspan="3"></td>      
+      <td>Subtotal</td>
+      <td><%= number_to_currency(@sale.total) %></td>
+    </tr>
+    <tr>
+      <td>Staff Sign</td>
+      <td colspan="2">Customer Sign</td>
+      <td>Note</td>
+      <td></td>
+    </tr> 
+    <tr>
+      <td colspan="3"></td>
+      <td>Grand Total</td>
+      <td><%= number_to_currency(@sale.total) %></td>
+    </tr>
+  </tbody>
+</table>

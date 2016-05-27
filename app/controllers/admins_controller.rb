@@ -43,7 +43,7 @@ class AdminsController < ApplicationController
   def update
     respond_to do |format|
       if @admin.update(admin_params)
-        format.html { redirect_to @admin, notice: 'Admin was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'Admin was successfully updated.' }
         format.json { render :show, status: :ok, location: @admin }
       else
         format.html { render :edit }

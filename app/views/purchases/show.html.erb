@@ -6,20 +6,27 @@
       <td><%= @purchase.name %></td>
     </tr>
 
+      
+    <% unless @purchase.address == "" %>
     <tr>
       <td><b>Address</b></td>
       <td><%= @purchase.address %></td>
     </tr>
+    <% end %>
 
+    <% unless @purchase.nic == "" %>
     <tr>
       <td><b>NIC</b></td>
       <td><%= @purchase.nic %></td>
     </tr>
+    <% end %>
 
+    <% unless @purchase.phone == "" %>
     <tr>
       <td><b>Phone</b></td>
       <td><%= @purchase.phone %></td>
     </tr>
+    <% end %>
 
     <tr>
       <td><b>Total</b></td>
@@ -83,9 +90,9 @@
       <td><%= number_to_currency(@purchase.total) %></td>
     </tr>
     <tr>
-      <td colspan="3"></td>
-      <td>Tax</td>
-      <td>0</td>
+      <td colspan="3">.</td>
+      <td></td>
+      <td></td>
     </tr> 
     <tr>
       <td colspan="3"></td>

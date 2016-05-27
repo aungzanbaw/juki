@@ -7,7 +7,9 @@ class SessionsController < ApplicationController
 		if @user && @user.password_digest == params[:password_digest]
 			session[:staff] = @user.id
 			session[:staff_name] = @user.name
-			redirect_to sales_path, notice: 'Logined'
+			redirect_to staff_home_path, notice: 'Logined'
+		else	
+			redirect_to staff_login_path, notice: 'Invalid login'
 		end
 	end
 
@@ -17,4 +19,7 @@ class SessionsController < ApplicationController
 		redirect_to staff_login_path, notice: 'Finish Logout'
 	end
 
+	def home
+		@sales = Sale.all
+	end
 end

@@ -31,13 +31,11 @@ Currency.delete_all
 end
 
 Staff.delete_all
-(0..20).each do |var|
-	Staff.create!(name: "Name #{var}", phone: 9123123+var, address: "no#{var} Blar street", password_digest: "12312#{var}") 
-	puts "Staff record #{var} created!"
-end
+Staff.create!(name: "aaa", phone: 123123, address: "No 91 Blar blar blar street", password_digest: "123123") 
+Staff.create!(name: "bbb", phone: 123123, address: "No 91 Blar blar blar street", password_digest: "123123") 
 
 Admin.delete_all 
-Admin.create!(name: "Name", phone: 91231, address: "n Blar street", password_digest: "1231") 
+Admin.create!(name: "admin", phone: 91231, address: "n Blar street", password_digest: "123123") 
 puts "Admin record created!" 
 
 Machine.delete_all

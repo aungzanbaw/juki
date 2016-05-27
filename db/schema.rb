@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511161225) do
+ActiveRecord::Schema.define(version: 20160526181017) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -189,14 +189,16 @@ ActiveRecord::Schema.define(version: 20160511161225) do
     t.string   "address"
     t.string   "nic"
     t.string   "phone"
-    t.integer  "cash"
+    t.integer  "cash",        limit: 8
     t.integer  "total"
     t.boolean  "postpone"
     t.integer  "tax"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.integer  "currency_id"
   end
 
+  add_index "sales", ["currency_id"], name: "index_sales_on_currency_id"
   add_index "sales", ["staff_id"], name: "index_sales_on_staff_id"
 
   create_table "staffs", force: :cascade do |t|

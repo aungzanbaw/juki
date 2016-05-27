@@ -1,5 +1,5 @@
 class SalesController < ApplicationController
-  before_filter :authenticate_staff
+  before_filter :authenticate_staff 
   before_action :set_sale, only: [:show, :edit, :update, :destroy]
 
   # GET /sales
@@ -11,11 +11,14 @@ class SalesController < ApplicationController
   # GET /sales/1
   # GET /sales/1.json
   def show
+    @sale_details = SaleDetail.where(sale_id: @sale.id) 
   end
 
   # GET /sales/new
   def new
-    @sale = Sale.new
+    @sale = Sale.new 
+    @datas = Sale.get_items(session[:sale_cart])
+    @total = get_total(session[:sale_cart])
   end
 
   # GET /sales/1/edit
@@ -23,14 +26,56 @@ class SalesController < ApplicationController
   end
 
   # POST /sales
-  # POST /sales.json
+  # POST /sales.json 
+
   def create
     @sale = Sale.new(sale_params)
-
+    @sale.total = get_total(session[:sale_cart])
+    @sale.tax = 0 
+    @sale.staff_id = session[:staff]
+    if @sale.cash 
+      if @sale.cash < @sale.total
+        @sale.postpone = true
+      else @sale.cash == @sale.total
+        @sale.postpone = false
+      end
+    else
+      @sale.postpone = false
+    end 
+    @sale.currency_id = Currency.last
     respond_to do |format|
       if @sale.save
-        format.html { redirect_to @sale, notice: 'Sale was successfully created.' }
-        format.json { render :show, status: :created, location: @sale }
+         
+        session[:sale_cart].each do |item|
+          @sale_detail = SaleDetail.new 
+          @sale_detail.sale_id = @sale.id
+          @sale_detail.itemable_id = item["id"]
+          @sale_detail.itemable_type = item["category"]
+          @sale_detail.qty = item["qty"] 
+
+          if @sale_detail.save
+            
+            case @sale_detail.itemable_type  
+            when "Part"
+              @part = Part.find(@sale_detail.itemable_id)
+              qty = @part.qty
+              qty -= @sale_detail.qty 
+              @part.update(:qty => qty)
+            when "Needle"
+              @needle = Needle.find(@sale_detail.itemable_id)
+              qty = @needle.qty
+              qty -= @sale_detail.qty 
+              @needle.update(:qty => qty)
+            end
+            
+          else
+            format.html { render :new }
+            format.json { render json: @sale.errors, status: :unprocessable_entity }
+          end
+          session.delete(:sale_cart)
+          format.html { redirect_to @sale, notice: 'Sale was successfully created.' }
+          format.json { render :show, status: :created, location: @sale }
+        end  
       else
         format.html { render :new }
         format.json { render json: @sale.errors, status: :unprocessable_entity }
@@ -99,7 +144,19 @@ class SalesController < ApplicationController
   end
 
   def update_cart
-    
+    session[:sale_cart].each do |stuff| 
+      price = 0
+      if stuff["category"] == "Part"
+        part = Part.find(stuff["id"])
+        price = part.price
+      elsif stuff["category"] == "Needle"
+        needle = Needle.find(stuff["id"])        
+        price = needle.price
+      end
+      stuff["price"] = price
+      stuff["qty"] = params["q"+stuff["category"]+stuff["id"]] unless params["q"+stuff["category"]+stuff["id"]] == nil
+    end
+    redirect_to sale_cart_url, notice: "Updated - operation success"
   end
 
   private

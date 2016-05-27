@@ -6,30 +6,31 @@
       <td><b>Customer / Company</b></td>
       <td><%= @msale.customer %></td>
     </tr>
-
+    
+    <% unless @msale.nic == "" %>
     <tr>
       <td><b>NIC</b></td>
       <td><%= @msale.nic %></td>
     </tr>
+    <% end %>
 
+    <% unless @msale.address == "" %>
     <tr>
       <td><b>Address</b></td>
       <td><%= @msale.address %></td>
     </tr>
+    <% end %>
 
+    <% unless @msale.phone == "" %>
     <tr>
       <td><b>Phone</b></td>
       <td><%= @msale.phone %></td>
     </tr>
+    <% end %>
 
     <tr>
       <td><b>Total</b></td>
       <td><%= number_to_currency(@msale.total) %></td>
-    </tr>
-
-    <tr>
-    <td><strong>Tax:</strong></td>
-    <td><%= @msale.tax %></td>
     </tr>
 
     <tr>
@@ -89,9 +90,9 @@
       <td><%= number_to_currency(@msale.total) %></td>
     </tr>
     <tr>
-      <td colspan="3"></td>
-      <td>Tax</td>
-      <td>0</td>
+      <td colspan="3">.</td>
+      <td></td>
+      <td></td>
     </tr> 
     <tr>
       <td colspan="3"></td>
@@ -112,13 +113,14 @@
     <tbody>
     
     <% @msale_details.each do |data| %>
-      <% data["qty"].times do |qty_local| 
-        chassis = Chassis.find_by(msale_id: params["id"], msale_detail_id: data["id"])
-      %>
-      <tr>
-        <td><%= data.msaleable.model %></td>
-        <td><%= chassis.chassisnum %></td>
-      </tr>
+      <% machine = Machine.find(data["msaleable_id"]) %>
+        <% chassis = Chassis.where(msale_id: data["msale_id"], msale_detail_id: data["id"]) 
+          chassis.each do |chass|
+        %>
+        <tr>
+          <td><%= machine.model %></td>
+          <td><%= chass.chassisnum %></td>        
+        </tr>      
       <% end %>
     <% end %>
 

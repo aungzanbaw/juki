@@ -27,7 +27,7 @@
       %>
       <tr>
         <td><%= data.msaleable.model %></td>
-        <td><input type="text" class="form-control" id="<%= data["id"] %>q<%= qty_local %>" name="<%= data["id"] %>q<%= qty_local %>" required="required" value="<%= chassis.chassisnum unless chassis.nil? %>"/></td>
+        <td><input <%= "disabled" unless chassis.nil? %> type="text" class="form-control" id="<%= data["id"] %>q<%= qty_local %>" name="<%= data["id"] %>q<%= qty_local %>" required="required" value="<%= chassis.chassisnum unless chassis.nil? %>"/></td>
       </tr>
       <% end %>
     <% end %>

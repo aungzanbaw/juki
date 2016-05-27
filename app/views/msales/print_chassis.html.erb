@@ -3,22 +3,22 @@
 <table class="table table-bordered">
   <thead>
     <tr>
-    	<th>Machine1</th> 
+      <th>Machine1</th> 
       <th>Chassis</th>
     </tr>
   </thead>
 
   <tbody>
     <% @datas.each do |data| %>  
-      <tr>
-        <% machine = Machine.find(@msale) %>
-        <td><%= machine.model %></td>
+        <% machine = Machine.find(data["msaleable_id"]) %>
         <% chassis = Chassis.where(msale_id: data["msale_id"], msale_detail_id: data["id"]) 
-        	chassis.each do |chass|
+          chassis.each do |chass|
         %>
-        <td><%= chass.chassisnum %></td>        
+        <tr>
+          <td><%= machine.model %></td>
+          <td><%= chass.chassisnum %></td>        
+        </tr>      
         <% end %>
-      </tr>      
     <% end %>  
   </tbody>
 </table>

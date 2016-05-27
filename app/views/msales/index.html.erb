@@ -32,7 +32,11 @@
         <td>
           <% if msale.proforma == false %>
             <%= link_to "Debt", new_debt_path(msale: msale.id), class: "btn btn-primary" %>
-            <%= link_to "Add chassis", msale_chassis_path(id: msale.id) , class: "btn btn-primary"%> 
+            
+            <% chassis = Chassis.where(msale_id: msale.id) 
+              if chassis.empty? %>
+              <%= link_to "Add chassis", msale_chassis_path(id: msale.id) , class: "btn btn-primary"%> 
+            <% end %>
             
             <% if msale.withdraw == false %>
               <%= link_to "Withdraw", new_withdraw_path(msale: msale.id), class: "btn btn-primary" %> 

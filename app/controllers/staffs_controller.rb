@@ -67,8 +67,12 @@ class StaffsController < ApplicationController
     session[:admin_name] = nil
     
     if session[:staff] || session[:staff].class == Fixnum
-      redirect_to sales_path, notice: 'Logined'
+      redirect_to staff_home_path, notice: 'Logined'
     end
+  end
+
+  def base
+    # @sales = Sales.all
   end
 
   private

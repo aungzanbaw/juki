@@ -8,7 +8,7 @@
         </li>
         <li>
             <a href="<%= msale_cart_path unless session[:msale_cart].nil? || session[:msale_cart].empty? %>">
-                <span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Machine Sale Cart <span class="badge"><%= session[:msale_cart].count unless session[:msale_cart].nil? || session[:msale_cart].empty? %></span>
+                <span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Sale Cart <span class="badge"><%= session[:msale_cart].count unless session[:msale_cart].nil? || session[:msale_cart].empty? %></span>
             </a>
         </li>
         <li>
@@ -24,25 +24,35 @@
         	<a href="<%= debts_path %>"><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> Debts <span class="badge"><%= datas.count unless datas.count == 0 || datas.nil? %></span></a>
         </li>
         <li>
-        	<a href="#"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Postpone sales <span class="badge">30</span></a>
-        </li>
+        	<a href="<%= post_pone_sale_path %>"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Postpone sales <span class="badge"><%= Sale.where(postpone: true).count %></span></a>
+        </li> 
 
+        
         <li>
-            <a href="#"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Out of Stocks <span class="badge">30</span></a>
-        </li>
-
-        <li>
-        	<a href="<%= chasses_path %>"><span class="glyphicon glyphicon-gift" aria-hidden="true"></span> Warranted Machines</a>
+        	<a href="<%= chasses_path %>"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Warranted Machines </a>
         </li>
         
     <% end %>
     
     <% if session["staff"] && !session["staff"].nil?  %>
+
         <li>
             <a href="<%= sale_cart_path unless session[:sale_cart].nil? || session[:sale_cart].empty? %>">
                 Sale Cart <span class="badge"><%= session[:sale_cart].count unless session[:sale_cart].nil? || session[:sale_cart].empty? %></span>
             </a>
         </li> 
+        
+
     <% end %>
     </ul>
 </nav>
+
+
+<% if session["staff"] && !session["staff"].nil?  %>
+    <p><%= session[:staff_name]  %></p>
+    <p>
+        <%= Currency.last.burma.to_s + "k-" + Currency.last.us.to_s  + "$"%>
+    </p>
+<% end %>
+
+<%= session[:sale_cart] %>

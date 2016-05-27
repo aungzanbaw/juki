@@ -46,4 +46,12 @@ class HomeController < ApplicationController
 		redirect_to root_path 
 	end
 
+	def post_pone_sale
+		@sales = Sale.where(postpone: true)
+	end
+
+	def all_sale
+		@sales = Sale.all		
+	end
+	
 end
