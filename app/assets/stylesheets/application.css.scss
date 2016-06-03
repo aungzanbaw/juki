@@ -145,3 +145,14 @@ body {
 .hide{
   display: none;
 }
+
+@media print{
+  body,h2,h3,h4{
+    padding: 0;
+    margin: 0;
+  }
+
+  table{
+    font-size: 11px;
+  }
+}

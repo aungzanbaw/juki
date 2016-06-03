@@ -1,14 +1,9 @@
-<h2></h2>
+<h4 class="text-center">U CHUN 陳永春</h4>
+<p class="text-center">No43A, No(4) Main Road, Shwe Pyi Thar Tsp, YGN, Myanmar</p>
+<p class="text-center"><small>Email-aeinchun969@gmail.com | Phone-05013286 | Fax-614038</small></p>
 
-<h3 class="text-center">Sale Invoice</h2>
-
-<table class="table table-bordered table-condensed">
+<table class="table table-bordered table-condensed printed">
   <tbody> 
-    <tr>
-      <td><b>Staff</b></td>
-      <td><%= @sale.staff.name %></td>
-    </tr>
-
     <tr>
       <td><b>Customer / Company</b></td>
       <td><%= @sale.customer %></td>
@@ -102,13 +97,14 @@
       <td><%= number_to_currency(@sale.total) %></td>
     </tr>
     <tr>
-      <td>Staff Sign</td>
+      <td>Staff Sign(<%= @sale.staff.name %>)</td>
       <td colspan="2">Customer Sign</td>
       <td>Note</td>
       <td></td>
     </tr> 
     <tr>
-      <td colspan="3"></td>
+      <td colspan=""></td>
+      <td colspan="2"></td>
       <td>Grand Total</td>
       <td><%= number_to_currency(@sale.total) %></td>
     </tr>
