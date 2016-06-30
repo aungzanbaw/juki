@@ -42,7 +42,13 @@
 
     <tr>
       <td><b>Invoice</b></td>
-      <td>MSINV#<%= @msale.id.to_s + @msale.created_at.year.to_s + @msale.created_at.month.to_s + @msale.created_at.day.to_s%></td>
+      <td>MSINV#<%= @msale.id.to_s + @msale.created_at.year.to_s + @msale.created_at.month.to_s + @msale.created_at.day.to_s%>
+      <% if @msale.proforma %>
+        <span class="label label-info">Proforma</span>
+      <% else %>
+        <span class="label label-success">In cash</span>
+      <% end %>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -82,8 +88,8 @@
         <td><%= output %></td>
         <td><%= msale["msaleable_type"] %></td>
         <td><%= msale["qty"] %></td>
-        <td><%= msale["price"] %></td> 
-        <td><%= msale["qty"].to_i * msale["price"].to_i %></td> 
+        <td><%= number_to_currency(msale["price"]) %></td> 
+        <td><%= number_to_currency(msale["qty"].to_i * msale["price"].to_i) %></td> 
       </tr>
     <% end %>
     <tr>

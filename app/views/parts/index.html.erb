@@ -26,7 +26,7 @@
 
   <tbody>
     <% @parts.each do |part| %>
-      <tr>
+      <tr class="<%= "danger" if part.price <= 0 %>" >
         <td><%= link_to part.model, edit_part_path(part) %></td>
         <td><%= part.namemm %></td>
         <td><%= part.nameeng %></td>

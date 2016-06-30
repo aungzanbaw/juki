@@ -1,5 +1,5 @@
 class SalesController < ApplicationController
-  before_filter :authenticate_staff 
+  before_filter :authenticate_staff, except: :show
   before_action :set_sale, only: [:show, :edit, :update, :destroy]
 
   # GET /sales
@@ -42,7 +42,7 @@ class SalesController < ApplicationController
     else
       @sale.postpone = false
     end 
-    @sale.currency_id = Currency.last
+    @sale.currency_id = Currency.last.id
     respond_to do |format|
       if @sale.save
          
@@ -108,11 +108,11 @@ class SalesController < ApplicationController
   end
 
   def part
-    @parts = filter_in_session(session[:sale_cart], Part,"Part")
+    @parts = filter_in_session(session[:sale_cart], Part.where.not("price <= 0 AND qty <= 0"),"Part")
   end
 
   def needle
-    @needles = filter_in_session(session[:sale_cart], Needle,"Needle")    
+    @needles = filter_in_session(session[:sale_cart], Needle.where.not("price <= 0 AND qty <= 0"),"Needle")
   end
 
   def add_cart

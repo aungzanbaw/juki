@@ -18,7 +18,7 @@
         <td><%= link_to  "PINV#"+purchase.id.to_s + purchase.created_at.year.to_s + purchase.created_at.month.to_s + purchase.created_at.day.to_s, purchase %></td>
         <td><%= purchase.name %></td>
         <td><%= purchase.address %></td> 
-        <td><%= purchase.total %></td> 
+        <td><%= number_to_currency(purchase.total) %></td> 
       </tr>
     <% end %>
   </tbody>

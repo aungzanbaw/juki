@@ -5,7 +5,7 @@ class CreatePurchases < ActiveRecord::Migration
       t.string :address
       t.string :nic
       t.string :phone
-      t.integer :total
+      t.integer :total, limit: 8
 
       t.timestamps null: false
     end

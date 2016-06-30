@@ -4,10 +4,10 @@ class CreateNeedles < ActiveRecord::Migration
       t.string :model
       t.string :category
       t.string :size
-      t.references :machine, index: true, foreign_key: true
-      t.integer :stock
-      t.integer :qty
-      t.integer :price
+      # t.references :machine, index: true, foreign_key: true
+      t.integer :stock, limit: 8
+      t.integer :qty, limit: 8
+      t.integer :price, limit: 8
 
       t.timestamps null: false
     end

@@ -82,8 +82,8 @@
         <td><%= output %></td> 
         <td><%= purchase["stockable_type"] %></td> 
         <td><%= purchase["qty"] %></td> 
-        <td><%= purchase["price"] %></td> 
-        <td><%= purchase["qty"].to_i * purchase["price"].to_i %></td> 
+        <td><%= number_to_currency(purchase["price"]) %></td> 
+        <td><%= number_to_currency(purchase["qty"].to_i * purchase["price"].to_i) %></td> 
       </tr>
     <% end %>
     <tr>

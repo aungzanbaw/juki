@@ -49,10 +49,8 @@
 
 
 <% if session["staff"] && !session["staff"].nil?  %>
-    <p><%= session[:staff_name]  %></p>
+    <p>Welcome - <%= session[:staff_name]  %></p>
     <p>
-        <%= Currency.last.burma.to_s + "k-" + Currency.last.us.to_s  + "$"%>
+        <%= Currency.last.burma.to_s + "Ks = " + Currency.last.us.to_s  + "$"%>
     </p>
 <% end %>
-
-<%= session[:sale_cart] %>

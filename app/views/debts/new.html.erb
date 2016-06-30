@@ -19,7 +19,11 @@
       <tr> 
         <td><%= number_to_currency(deb.amount) %></td>
         <td><%= deb.date %></td>
-        <td><%= deb.paid %></td> 
+        <td> 
+          <span class="label <%= 'label-success' if deb.paid %> <%= 'label-danger' if deb.paid == false %>">
+            <%= deb.paid %>
+          </span>
+        </td> 
         <td><%= link_to "Paid", edit_debt_path(id: deb.id, msale: deb.msale_id) %></td> 
       </tr>
     <% end %>

@@ -28,7 +28,15 @@
         <td><%= msale.proforma %></td>
         <td><%= msale.customer %></td> 
         <td><%= number_to_currency(msale.total) %></td>
-        <td><%= msale.debt %></td>
+        <td>
+          <% if msale.debt %>
+            <span class="label label-danger">Debt</span>
+          <% elsif msale.proforma %>
+            <span class="label label-info">Proforma</span>          
+          <% else %>
+            <span class="label label-success">In cash</span>          
+          <% end %>
+        </td>
         <td>
           <% if msale.proforma == false %>
             <%= link_to "Debt", new_debt_path(msale: msale.id), class: "btn btn-primary" %>

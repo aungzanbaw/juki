@@ -14,8 +14,7 @@
     <tr>
       <th>Model</th>
       <th>Category</th>
-      <th>Size</th>
-      <th>Machine</th>
+      <th>Size</th> 
       <th>Minimum stock</th>
       <th>Quantity</th>
       <th>Price</th>
@@ -25,11 +24,10 @@
 
   <tbody>
     <% @needles.each do |needle| %>
-      <tr>
+      <tr class="<%= "danger" if needle.price <= 0 %>" >
         <td><%= link_to needle.model, edit_needle_path(needle) %></td>
         <td><%= needle.category %></td>
-        <td><%= needle.size %></td>
-        <td><%= needle.machine.model %></td>
+        <td><%= needle.size %></td> 
         <td><%= needle.stock %></td>
         <td><%= needle.qty %></td>
         <td><%= needle.price %></td>  

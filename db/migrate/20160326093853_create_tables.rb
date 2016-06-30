@@ -5,7 +5,7 @@ class CreateTables < ActiveRecord::Migration
       t.string :name
       t.integer :width
       t.integer :height
-      t.integer :qty
+      t.integer :qty, limit: 8
       
       t.timestamps null: false
     end

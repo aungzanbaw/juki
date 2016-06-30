@@ -50,7 +50,7 @@
         </td>
         <td><%= data["qty"].to_i * price.to_i %></td>  
         <td> 
-        	<%= link_to 'Remove', remove_from_sale_cart_path(id: data["id"], category: data["category"]), class: "btn btn-link" %>
+        	<%= link_to 'Remove', remove_from_sale_cart_path(id: data["id"], category: data["category"]), class: "btn btn-link", tabindex: "-1" %>
         </td>
       </tr>
     <% end %>
@@ -60,7 +60,7 @@
     	<td><%= number_to_currency(@total) %></td>
     </tr>
     <tr>
-    	<td colspan="4"></td>
+    	<td colspan="4">.</td>
     	<td></td>
     	<td></td>
     </tr>

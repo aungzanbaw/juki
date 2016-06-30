@@ -12,15 +12,14 @@
 <table class="datatabled table table-bordered table-hover table-condensed">
   <thead>
     <tr>
-      <th>Proforma</th>
+      <th></th>
       <th>Staff</th>
       <th>Customer</th>
       <th>Address</th>
-      <th>Nic</th>
+      <th>NIC</th>
       <th>Phone</th>
-      <th>Cash</th>
-      <th>Total</th>
-      <th>Postpone</th> 
+      <th>Sale Method</th>
+      <th>Total</th> 
       <th></th>
     </tr>
   </thead>
@@ -34,9 +33,14 @@
         <td><%= sale.address %></td>
         <td><%= sale.nic %></td>
         <td><%= sale.phone %></td>
-        <td><%= sale.cash %></td>
-        <td><%= sale.total %></td>
-        <td><%= sale.postpone %></td>  
+        <td>
+          <% if sale.postpone %>
+            <span class="label label-danger">Postponed <%= number_to_currency(sale.total - sale.cash) %></span>
+          <% else %>
+            <span class="label label-success">In cash</span>          
+          <% end %>
+        </td> 
+        <td><%= number_to_currency(sale.total) %></td> 
         <td><%= link_to 'Destroy', sale, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

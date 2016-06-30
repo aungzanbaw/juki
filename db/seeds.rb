@@ -35,7 +35,7 @@ Staff.create!(name: "aaa", phone: 123123, address: "No 91 Blar blar blar street"
 Staff.create!(name: "bbb", phone: 123123, address: "No 91 Blar blar blar street", password_digest: "123123") 
 
 Admin.delete_all 
-Admin.create!(name: "admin", phone: 91231, address: "n Blar street", password_digest: "123123") 
+Admin.create!(name: "admin", phone: 91231, address: "n Blar street", password_digest: "admin") 
 puts "Admin record created!" 
 
 Machine.delete_all

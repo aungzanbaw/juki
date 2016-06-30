@@ -15,7 +15,7 @@
     	<th>#</th>
     	<th>Staff</th>
     	<th>Customer</th>
-    	<th>Cash</th>
+    	<th>Status</th>
     	<th>Date</th>
     </tr>
   </thead>
@@ -26,14 +26,13 @@
         <td><%= "SINV#"+sale.id.to_s + sale.created_at.year.to_s + sale.created_at.month.to_s + sale.created_at.day.to_s %></td> 
         <td><%= sale.staff.name %></td>
         <td><%= sale.customer %></td>
-        <% msg = "" 
-        	if sale.postpone 
-        		msg = sale.cash
-        	else
-        		msg = "Fully paid"
-        	end 
-        %> 
-        <td><%= msg %></td>
+        <td>
+          <% if sale.postpone %>
+            <span class="label label-danger">Postponed</span>             
+          <% else %>
+        		<span class="label label-success">Paid</span>            
+        	<% end %> 
+        </td>
         <td><%= sale.created_at %></td>
       </tr>
     <% end %>

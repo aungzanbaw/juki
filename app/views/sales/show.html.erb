@@ -44,7 +44,14 @@
 
     <tr>
       <td><b>Invoice</b></td>
-      <td>SINV#<%= @sale.id.to_s + @sale.created_at.year.to_s + @sale.created_at.month.to_s + @sale.created_at.day.to_s%></td>
+      <td>SINV#<%= @sale.id.to_s + @sale.created_at.year.to_s + @sale.created_at.month.to_s + @sale.created_at.day.to_s%>
+        <% if @sale.cash %>
+          <span class="label label-info">Postponed</span>
+        <% else %>
+          <span class="label label-success">In cash</span>
+        <% end %>
+      </td>
+      
     </tr>
   </tbody>
 </table>

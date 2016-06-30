@@ -6,7 +6,7 @@ class CreateMsales < ActiveRecord::Migration
       t.string :nic
       t.string :address
       t.string :phone
-      t.integer :total
+      t.integer :total, limit: 8
       t.boolean :debt
       t.integer :tax
       t.boolean :delivery

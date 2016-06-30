@@ -44,11 +44,11 @@ ActiveRecord::Schema.define(version: 20160526181017) do
 
   create_table "debts", force: :cascade do |t|
     t.integer  "msale_id"
-    t.integer  "amount"
+    t.integer  "amount",     limit: 8
     t.date     "date"
     t.boolean  "paid"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   add_index "debts", ["msale_id"], name: "index_debts_on_msale_id"
@@ -109,13 +109,13 @@ ActiveRecord::Schema.define(version: 20160526181017) do
     t.string   "nic"
     t.string   "address"
     t.string   "phone"
-    t.integer  "total"
+    t.integer  "total",      limit: 8
     t.boolean  "debt"
     t.integer  "tax"
     t.boolean  "delivery"
     t.boolean  "withdraw"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "needles", force: :cascade do |t|
@@ -166,9 +166,9 @@ ActiveRecord::Schema.define(version: 20160526181017) do
     t.string   "address"
     t.string   "nic"
     t.string   "phone"
-    t.integer  "total"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "total",      limit: 8
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "sale_details", force: :cascade do |t|

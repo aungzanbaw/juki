@@ -4,7 +4,7 @@ class CreateMotors < ActiveRecord::Migration
       t.string :brand
       t.string :name
       t.integer :watt
-      t.integer :qty
+      t.integer :qty, limit: 8
       
       t.timestamps null: false
     end

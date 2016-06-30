@@ -3,7 +3,7 @@ class CreateStands < ActiveRecord::Migration
     create_table :stands do |t|
       t.string :brand
       t.string :name
-      t.integer :qty
+      t.integer :qty, limit: 8
 
       t.timestamps null: false
     end
