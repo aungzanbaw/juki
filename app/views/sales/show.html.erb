@@ -94,8 +94,8 @@
             price = @needle.price
           end 
         %>
-        <td><%= price %></td>
-        <td><%= sale["qty"].to_i * price.to_i %></td> 
+        <td><%= number_to_currency(price) %></td>
+        <td><%= number_to_currency(sale["qty"].to_i * price.to_i) %></td> 
       </tr>
     <% end %>
     <tr>

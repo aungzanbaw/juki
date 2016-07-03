@@ -19,8 +19,8 @@
   </thead>
 
   <tbody>
-    <% @currencies.each do |currency| %>
-      <tr>
+    <% @currencies.each do |currency| %> 
+      <tr class="<%= "success" if currency == Currency.last  %>">
         <td><%= currency.burma %></td>
         <td><%= currency.us %></td>  
         <td><%= currency.created_at.strftime("%d, %B, %Y") %></td> 

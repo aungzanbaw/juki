@@ -51,6 +51,7 @@ Rails.application.routes.draw do
 
   get "staff_login", to: "staffs#login"
   get "staff_home", to: "sessions#home"
+  get "print_in_ks", to: "sales#print"
   post "validate", to: "sessions#new"
   get "logout", to: "sessions#destroy"
 

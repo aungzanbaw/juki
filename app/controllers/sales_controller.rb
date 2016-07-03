@@ -1,6 +1,6 @@
 class SalesController < ApplicationController
   before_filter :authenticate_staff, except: :show
-  before_action :set_sale, only: [:show, :edit, :update, :destroy]
+  before_action :set_sale, only: [:show, :edit, :update, :destroy,:print]
 
   # GET /sales
   # GET /sales.json
@@ -12,6 +12,10 @@ class SalesController < ApplicationController
   # GET /sales/1.json
   def show
     @sale_details = SaleDetail.where(sale_id: @sale.id) 
+  end
+
+  def print
+    @sale_details = SaleDetail.where(sale_id: params[:id]) 
   end
 
   # GET /sales/new

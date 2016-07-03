@@ -16,6 +16,8 @@
     	<th>Staff</th>
     	<th>Customer</th>
     	<th>Status</th>
+      <th>Myanmar</th>
+      <th>English</th>
     	<th>Date</th>
     </tr>
   </thead>
@@ -33,6 +35,8 @@
         		<span class="label label-success">Paid</span>            
         	<% end %> 
         </td>
+        <td><%= link_to "Print(Ks)", print_in_ks_path(id:sale.id) %></td>
+        <td><%= link_to "Print($)", sale  %></td>
         <td><%= sale.created_at %></td>
       </tr>
     <% end %>
